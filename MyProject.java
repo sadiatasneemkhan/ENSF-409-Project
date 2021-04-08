@@ -246,8 +246,8 @@ class Lamp extends Furniture {
 		
 }
 
-class OrderFrom {
-	
+class OrderForm {
+	//creates .txt file with correct order format
 }
 
 class Client {
