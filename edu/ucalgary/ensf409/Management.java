@@ -2,7 +2,6 @@ package edu.ucalgary.ensf409;
 
 import java.sql.*;
 import java.util.*;
-import java.io.*;
 
 public class Management {
     private Vector<Chair> chair = new Vector<Chair>();
