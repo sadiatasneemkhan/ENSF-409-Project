@@ -63,7 +63,7 @@ public class Inventory {
     }
 
     public static void main(String args[]) {
-        Inventory SQL = new Inventory("jdbc:mysql://localhost:3306/INVENTORY", "root", "BwNlEp200.23");
+        Inventory SQL = new Inventory("jdbc:mysql://localhost:3306/INVENTORY", "Username", "UseYourOwn");
 
         SQL.initializeConnection();
 
