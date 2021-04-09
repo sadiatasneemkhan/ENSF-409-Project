@@ -42,10 +42,12 @@ public class Inventory {
 
             chain = new Management(results, category, type);
 
-            chain.printChair();
-            chain.printDesk();
-            chain.printFiling();
-            chain.printLamp();
+            chain.printParts();
+
+            chain.combination(items);
+
+            System.out.println(chain.getPrice());
+            System.out.println(chain.getIndex());
 
             myStmt.close();
         } catch (SQLException e) {
@@ -67,6 +69,6 @@ public class Inventory {
 
         SQL.initializeConnection();
 
-        SQL.populateFurniture("Filing", "Medium", 1);
+        SQL.populateFurniture("CHAIR", "Ergonomic", 1);
     }
 }
