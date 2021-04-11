@@ -48,11 +48,11 @@ public class Inventory {
 
             System.out.println(chain.getPrice());
             System.out.println(chain.getIndex());
-            System.out.println(chain.getID());
+            System.out.println(chain.getIDString());
 
-            int l = chain.getID().size();
+            int l = chain.getIDVector().size();
             for (int i = 0; i < l; i++) {
-                deleteFurniture(chain.getID().get(i));
+                deleteFurniture(chain.getIDVector().get(i));
             }
 
             myStmt.close();
@@ -64,7 +64,6 @@ public class Inventory {
     public void deleteFurniture(String ID) {
         try {
             String query = "";
-            PreparedStatement myStmt;
             switch (chain.getPriority()) {
             case 0:
                 query = "DELETE FROM CHAIR WHERE ID = ?";
@@ -73,15 +72,15 @@ public class Inventory {
                 query = "DELETE FROM DESK WHERE ID = ?";
                 break;
             case 2:
-                query = "DELETE FROM DESK WHERE ID = ?";
+                query = "DELETE FROM FILING WHERE ID = ?";
                 break;
 
             case 3:
-                query = "DELETE FROM DESK WHERE ID = ?";
+                query = "DELETE FROM LAMP WHERE ID = ?";
                 break;
             }
 
-            myStmt = dbConnect.prepareStatement(query);
+            PreparedStatement myStmt = dbConnect.prepareStatement(query);
             myStmt.setString(1, ID);
 
             myStmt.close();
@@ -104,6 +103,6 @@ public class Inventory {
 
         SQL.initializeConnection();
 
-        SQL.populateFurniture("LAMP", "Desk", 8);
+        SQL.populateFurniture("LAMP", "Desk", 2);
     }
 }
