@@ -10,9 +10,10 @@ public class Management {
     private Vector<Lamp> lamp = new Vector<Lamp>();
     private Vector<Vector<String>> parts = new Vector<Vector<String>>();
 
-    private Vector<Integer> index = new Vector<Integer>();
+    private Vector<Vector<Integer>> index = new Vector<Vector<Integer>>();
     private Vector<Boolean> usable = new Vector<Boolean>();
-    private int price = 10000;
+    private Vector<Integer> price = new Vector<Integer>();
+    private Vector<String> ID = new Vector<String>();
 
     private int priority;
 
@@ -80,12 +81,16 @@ public class Management {
         return this.priority;
     }
 
-    public int getPrice() {
+    public Vector<Integer> getPrice() {
         return this.price;
     }
 
-    public Vector<Integer> getIndex() {
+    public Vector<Vector<Integer>> getIndex() {
         return this.index;
+    }
+
+    public Vector<String> getID() {
+        return this.ID;
     }
 
     // Setters
@@ -144,100 +149,121 @@ public class Management {
 
     // Combination algorithm
     public void combination(int steps) {
-        index.add(-1);
-        index.add(-1);
+        for (int k = 0; k < steps; k++) {
+            index.add(new Vector<Integer>());
+            index.get(k).add(-1);
+            index.get(k).add(-1);
+            price.add(10000);
 
-        int l;
-
-        switch (priority) {
-        case 0:
+            int l;
             l = parts.get(0).size();
             for (int i = 0; i < l; i++) {
-                usable.add(false);
-            }
-
-            for (int i = 1; i <= l; i++) {
-                finalStep(chair.size(), l, i, 0, usable);
-
-                if (index.size() > 2) {
-                    this.price = Price(index.get(2));
-                    index.set(0, index.get(2));
-                    index.removeElementAt(1);
-                    index.removeElementAt(1);
-                }
-
-                if (price != 10000) {
-                    break;
+                if (k == 0) {
+                    usable.add(false);
+                } else {
+                    usable.set(i, false);
                 }
             }
-            break;
-        case 1:
-            l = parts.get(0).size();
-            for (int i = 0; i < l; i++) {
-                usable.add(false);
-            }
 
-            for (int i = 1; i <= l; i++) {
-                finalStep(desk.size(), l, i, 0, usable);
+            switch (priority) {
+            case 0:
+                for (int i = 1; i <= l; i++) {
+                    recursive(chair.size(), l, i, 0, usable, k);
 
-                if (index.size() > 2) {
-                    this.price = Price(index.get(2));
-                    index.set(0, index.get(2));
-                    index.removeElementAt(1);
-                    index.removeElementAt(1);
+                    if (index.get(k).size() > 2) {
+                        this.price.set(k, Price(index.get(k).get(2)));
+                        index.get(k).set(0, index.get(k).get(2));
+                        index.get(k).removeElementAt(1);
+                        index.get(k).removeElementAt(1);
+                    }
+
+                    if (price.get(k) != 10000) {
+                        break;
+                    }
+                }
+                if (index.get(k).get(0) != -1) {
+                    for (int i = index.get(k).size() - 1; i >= 0; i--) {
+                        ID.add(chair.get(index.get(k).get(i)).getFurniture().getID());
+                        chair.removeElementAt(index.get(k).get(i));
+                        parts.removeElementAt(index.get(k).get(i));
+                    }
+                }
+                break;
+            case 1:
+                for (int i = 1; i <= l; i++) {
+                    recursive(desk.size(), l, i, 0, usable, k);
+
+                    if (index.get(k).size() > 2) {
+                        this.price.set(k, Price(index.get(k).get(2)));
+                        index.get(k).set(0, index.get(k).get(2));
+                        index.get(k).removeElementAt(1);
+                        index.get(k).removeElementAt(1);
+                    }
+
+                    if (price.get(k) != 10000) {
+                        break;
+                    }
+                }
+                if (index.get(k).get(0) != -1) {
+                    for (int i = index.get(k).size() - 1; i >= 0; i--) {
+                        ID.add(desk.get(index.get(k).get(i)).getFurniture().getID());
+                        desk.removeElementAt(index.get(k).get(i));
+                        parts.removeElementAt(index.get(k).get(i));
+                    }
+                }
+                break;
+            case 2:
+                for (int i = 1; i <= l; i++) {
+                    recursive(filing.size(), l, i, 0, usable, k);
+
+                    if (index.get(k).size() > 2) {
+                        this.price.set(k, Price(index.get(k).get(2)));
+                        index.get(k).set(0, index.get(k).get(2));
+                        index.get(k).removeElementAt(1);
+                        index.get(k).removeElementAt(1);
+                    }
+
+                    if (price.get(k) != 10000) {
+                        break;
+                    }
+                }
+                if (index.get(k).get(0) != -1) {
+                    for (int i = index.get(k).size() - 1; i >= 0; i--) {
+                        ID.add(filing.get(index.get(k).get(i)).getFurniture().getID());
+                        filing.removeElementAt(index.get(k).get(i));
+                        parts.removeElementAt(index.get(k).get(i));
+                    }
+                }
+                break;
+            case 3:
+                for (int i = 1; i <= l; i++) {
+                    recursive(lamp.size(), l, i, 0, usable, k);
+
+                    if (index.get(k).size() > 2) {
+                        this.price.set(k, Price(index.get(k).get(2)));
+                        index.get(k).set(0, index.get(k).get(2));
+                        index.get(k).removeElementAt(1);
+                        index.get(k).removeElementAt(1);
+                    }
+
+                    if (price.get(k) != 10000) {
+                        break;
+                    }
                 }
 
-                if (price != 10000) {
-                    break;
+                if (index.get(k).get(0) != -1) {
+                    for (int i = index.get(k).size() - 1; i >= 0; i--) {
+                        ID.add(lamp.get(index.get(k).get(i)).getFurniture().getID());
+                        lamp.removeElementAt(index.get(k).get(i));
+                        parts.removeElementAt(index.get(k).get(i));
+                    }
                 }
+                break;
             }
-            break;
-        case 2:
-            l = parts.get(0).size();
-            for (int i = 0; i < l; i++) {
-                usable.add(false);
-            }
-
-            for (int i = 1; i <= l; i++) {
-                finalStep(filing.size(), l, i, 0, usable);
-
-                if (index.size() > 2) {
-                    this.price = Price(index.get(2));
-                    index.set(0, index.get(2));
-                    index.removeElementAt(1);
-                    index.removeElementAt(1);
-                }
-
-                if (price != 10000) {
-                    break;
-                }
-            }
-            break;
-        case 3:
-            l = parts.get(0).size();
-            for (int i = 0; i < l; i++) {
-                usable.add(false);
-            }
-
-            for (int i = 1; i <= l; i++) {
-                finalStep(lamp.size(), l, i, 0, usable);
-
-                if (index.size() > 2) {
-                    this.price = Price(index.get(2));
-                    index.set(0, index.get(2));
-                    index.removeElementAt(1);
-                    index.removeElementAt(1);
-                }
-
-                if (price != 10000) {
-                    break;
-                }
-            }
-            break;
         }
     }
 
-    public void finalStep(int length, int innerLength, int level, int position, Vector<Boolean> previous) {
+    public void recursive(int length, int innerLength, int level, int position, Vector<Boolean> previous, int steps) {
         previous = resetVector(previous);
 
         while (position < length) {
@@ -248,32 +274,32 @@ public class Management {
             }
 
             if (level != 1) {
-                finalStep(length, innerLength, level - 1, position + 1, usable);
-                if (index.get(0) == -1 && index.get(1) == -1 && index.size() > 2) {
-                    price = Price(position) + Price(index.get(2));
+                recursive(length, innerLength, level - 1, position + 1, usable, steps);
+                if (index.get(steps).get(0) == -1 && index.get(steps).get(1) == -1 && index.get(steps).size() > 2) {
+                    price.set(steps, Price(position) + Price(index.get(steps).get(2)));
 
-                    index.set(0, position);
-                    index.set(1, index.get(2));
+                    index.get(steps).set(0, position);
+                    index.get(steps).set(1, index.get(steps).get(2));
                 }
 
-                for (int i = index.size() - 1; i > 1; i--) {
-                    if (Price(position) + Price(index.get(i)) < price) {
-                        price = Price(position) + Price(index.get(i));
+                for (int i = index.get(steps).size() - 1; i > 1; i--) {
+                    if (Price(position) + Price(index.get(steps).get(i)) < price.get(steps)) {
+                        price.set(steps, Price(position) + Price(index.get(steps).get(i)));
 
-                        index.set(0, position);
-                        index.set(1, index.get(i));
+                        index.get(steps).set(0, position);
+                        index.get(steps).set(1, index.get(steps).get(i));
                     }
                 }
 
-                while (index.size() != 2) {
-                    index.removeElementAt(2);
+                while (index.get(steps).size() != 2) {
+                    index.get(steps).removeElementAt(2);
                 }
             }
 
             for (int i = 0; i < innerLength; i++) {
                 if (usable.get(i)) {
                     if (i == innerLength - 1) {
-                        index.add(position);
+                        index.get(steps).add(position);
                         usable = resetVector(previous);
                     }
                 } else {

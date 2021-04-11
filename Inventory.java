@@ -48,10 +48,45 @@ public class Inventory {
 
             System.out.println(chain.getPrice());
             System.out.println(chain.getIndex());
+            System.out.println(chain.getID());
+
+            int l = chain.getID().size();
+            for (int i = 0; i < l; i++) {
+                deleteFurniture(chain.getID().get(i));
+            }
 
             myStmt.close();
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void deleteFurniture(String ID) {
+        try {
+            String query = "";
+            PreparedStatement myStmt;
+            switch (chain.getPriority()) {
+            case 0:
+                query = "DELETE FROM CHAIR WHERE ID = ?";
+                break;
+            case 1:
+                query = "DELETE FROM DESK WHERE ID = ?";
+                break;
+            case 2:
+                query = "DELETE FROM DESK WHERE ID = ?";
+                break;
+
+            case 3:
+                query = "DELETE FROM DESK WHERE ID = ?";
+                break;
+            }
+
+            myStmt = dbConnect.prepareStatement(query);
+            myStmt.setString(1, ID);
+
+            myStmt.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
     }
 
@@ -65,10 +100,10 @@ public class Inventory {
     }
 
     public static void main(String args[]) {
-        Inventory SQL = new Inventory("jdbc:mysql://localhost:3306/INVENTORY", "Username", "UseYourOwn");
+        Inventory SQL = new Inventory("jdbc:mysql://localhost:3306/INVENTORY", "root", "BwNlEp200.23");
 
         SQL.initializeConnection();
 
-        SQL.populateFurniture("CHAIR", "Ergonomic", 1);
+        SQL.populateFurniture("LAMP", "Desk", 8);
     }
 }
