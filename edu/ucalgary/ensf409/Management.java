@@ -89,7 +89,21 @@ public class Management {
         return this.index;
     }
 
-    public Vector<String> getID() {
+    public String getIDString() {
+        StringBuilder temp = new StringBuilder();
+
+        int l = ID.size();
+        for (int i = 0; i < l; i++) {
+            temp.append(ID.get(i));
+            if (i < l - 1) {
+                temp.append("\n");
+            }
+        }
+
+        return temp.toString();
+    }
+
+    public Vector<String> getIDVector() {
         return this.ID;
     }
 
@@ -250,7 +264,6 @@ public class Management {
                         break;
                     }
                 }
-
                 if (index.get(k).get(0) != -1) {
                     for (int i = index.get(k).size() - 1; i >= 0; i--) {
                         ID.add(lamp.get(index.get(k).get(i)).getFurniture().getID());
