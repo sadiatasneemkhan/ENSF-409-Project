@@ -1,5 +1,6 @@
 import edu.ucalgary.ensf409.*;
 import java.sql.*;
+import java.util.Scanner;
 
 public class Inventory {
     public final String DBURL;
@@ -63,21 +64,21 @@ public class Inventory {
 
     public void deleteFurniture(String ID) {
         try {
-            String query = "";
+            String query = new String();
             PreparedStatement myStmt;
             switch (chain.getPriority()) {
             case 0:
-                query = "DELETE FROM CHAIR WHERE ID = ?";
+                query = "DELETE FROM chair WHERE ID = ?";
                 break;
             case 1:
-                query = "DELETE FROM FILING WHERE ID = ?";
+                query = "DELETE FROM filing WHERE ID = ?";
                 break;
             case 2:
-                query = "DELETE FROM LAMP WHERE ID = ?";
+                query = "DELETE FROM lamp WHERE ID = ?";
                 break;
 
             case 3:
-                query = "DELETE FROM DESK WHERE ID = ?";
+                query = "DELETE FROM desk WHERE ID = ?";
                 break;
             }
 
@@ -99,11 +100,27 @@ public class Inventory {
         }
     }
 
+    public static void welcome(){
+        System.out.println("Welcome!");
+        System.out.println("This program will need a connection to the inventory deatabase in order to function properly");
+        System.out.println("The purpose is to figure ou the cheapest and most sustainable option when choosing a new furniture item.");
+        System.out.println("All you need to specify is what type of item you want([lamp, filing, desk or chair) and how many you want");
+        System.out.println("**********************************************************************************************************");
+    }
+
     public static void main(String args[]) {
-        Inventory SQL = new Inventory("jdbc:mysql://localhost:3306/INVENTORY", "username", "password");
+        
+        welcome();
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter your username: ");
+        String userName = input.nextLine();
+        System.out.println("Enter your username: ");
+        String password = input.nextLine();
+
+        Inventory SQL = new Inventory("jdbc:mysql://localhost:3306/INVENTORY", userName, password);
 
         SQL.initializeConnection();
 
-        SQL.populateFurniture("LAMP", "Desk", 8);
+        SQL.populateFurniture("LAMP", "Desk", 1);
     }
 }
