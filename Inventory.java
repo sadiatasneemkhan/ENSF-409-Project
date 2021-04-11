@@ -31,6 +31,7 @@ public class Inventory {
     public void initializeConnection() {
         try {
             dbConnect = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
+            System.out.println("Connection established successfully!");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -102,7 +103,7 @@ public class Inventory {
 
     public static void welcome(){
         System.out.println("Welcome!");
-        System.out.println("This program will need a connection to the inventory deatabase in order to function properly");
+        System.out.println("This program will need a connection to the inventory database (jdbc:mysql://localhost:3306/inventory)");
         System.out.println("The purpose is to figure ou the cheapest and most sustainable option when choosing a new furniture item.");
         System.out.println("All you need to specify is what type of item you want([lamp, filing, desk or chair) and how many you want");
         System.out.println("**********************************************************************************************************");
@@ -118,9 +119,14 @@ public class Inventory {
         String password = input.nextLine();
 
         Inventory SQL = new Inventory("jdbc:mysql://localhost:3306/INVENTORY", userName, password);
-
         SQL.initializeConnection();
-
-        SQL.populateFurniture("LAMP", "Desk", 1);
+        System.out.println("What kind of furniture do you want?: ");
+        String furniture = input.nextLine();
+        // inorder to avoid user input mistakes we need to make the user choose between all the valid types there are for each furniture type.
+        System.out.println("What type?: ");
+        String type = input.nextLine();
+        System.out.println("how many? ");
+        int ammount = input.nextInt();
+        SQL.populateFurniture(furniture, type, ammount);
     }
 }
