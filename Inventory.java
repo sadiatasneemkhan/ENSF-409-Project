@@ -104,8 +104,8 @@ public class Inventory {
     public static void welcome(){
         System.out.println("Welcome!");
         System.out.println("This program will need a connection to the inventory database (jdbc:mysql://localhost:3306/inventory)");
-        System.out.println("The purpose is to figure ou the cheapest and most sustainable option when choosing a new furniture item.");
-        System.out.println("All you need to specify is what type of item you want([lamp, filing, desk or chair) and how many you want");
+        System.out.println("The purpose is to figure out the cheapest and most sustainable option when choosing a new furniture item.");
+        System.out.println("All you need to specify is what type of item (lamp, filing, desk or chair), the type and how many you want");
         System.out.println("**********************************************************************************************************");
     }
 
@@ -115,7 +115,7 @@ public class Inventory {
         Scanner input = new Scanner(System.in);
         System.out.println("Enter your username: ");
         String userName = input.nextLine();
-        System.out.println("Enter your username: ");
+        System.out.println("Enter your password: ");
         String password = input.nextLine();
 
         Inventory SQL = new Inventory("jdbc:mysql://localhost:3306/INVENTORY", userName, password);
@@ -125,7 +125,7 @@ public class Inventory {
         // inorder to avoid user input mistakes we need to make the user choose between all the valid types there are for each furniture type.
         System.out.println("What type?: ");
         String type = input.nextLine();
-        System.out.println("how many? ");
+        System.out.println("How many? ");
         int ammount = input.nextInt();
         SQL.populateFurniture(furniture, type, ammount);
     }
