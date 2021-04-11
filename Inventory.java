@@ -70,10 +70,10 @@ public class Inventory {
                 query = "DELETE FROM CHAIR WHERE ID = ?";
                 break;
             case 1:
-                query = "DELETE FROM DESK WHERE ID = ?";
+                query = "DELETE FROM FILING WHERE ID = ?";
                 break;
             case 2:
-                query = "DELETE FROM DESK WHERE ID = ?";
+                query = "DELETE FROM LAMP WHERE ID = ?";
                 break;
 
             case 3:
