@@ -105,8 +105,8 @@ public class Inventory {
         System.out.println("Welcome!");
         System.out.println("This program will need a connection to the inventory database (jdbc:mysql://localhost:3306/inventory)");
         System.out.println("The purpose is to figure out the cheapest and most sustainable option when choosing a new furniture item.");
-        System.out.println("All you need to specify is what type of item (lamp, filing, desk or chair), the type and how many you want");
-        System.out.println("**********************************************************************************************************");
+        System.out.println("All you need to specify is what furniture of item (lamp, filing, desk or chair), the type and how many you want");
+        System.out.println("***************************************************************************************************************");
     }
 
     public static void main(String args[]) {
