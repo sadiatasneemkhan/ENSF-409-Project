@@ -27,26 +27,26 @@ public class Management {
                 if (results.getString("Type").equals(type)) {
                     this.parts.add(new Vector<String>());
 
-                    if (category.toUpperCase().equals("CHAIR")) {
+                    if (category.equalsIgnoreCase("CHAIR")) {
                         priority = 0;
                         setChair(results);
                         parts.get(parts.size() - 1).add(results.getString("Legs"));
                         parts.get(parts.size() - 1).add(results.getString("Arms"));
                         parts.get(parts.size() - 1).add(results.getString("Seat"));
                         parts.get(parts.size() - 1).add(results.getString("Cushion"));
-                    } else if (category.toUpperCase().equals("DESK")) {
+                    } else if (category.equalsIgnoreCase("DESK")) {
                         priority = 1;
                         setDesk(results);
                         parts.get(parts.size() - 1).add(results.getString("Legs"));
                         parts.get(parts.size() - 1).add(results.getString("Top"));
                         parts.get(parts.size() - 1).add(results.getString("Drawer"));
-                    } else if (category.toUpperCase().equals("FILING")) {
+                    } else if (category.equalsIgnoreCase("FILING")) {
                         priority = 2;
                         setFiling(results);
                         parts.get(parts.size() - 1).add(results.getString("Rails"));
                         parts.get(parts.size() - 1).add(results.getString("Drawers"));
                         parts.get(parts.size() - 1).add(results.getString("Cabinet"));
-                    } else if (category.toUpperCase().equals("LAMP")) {
+                    } else if (category.equalsIgnoreCase("LAMP")) {
                         priority = 3;
                         setLamp(results);
                         parts.get(parts.size() - 1).add(results.getString("Base"));
