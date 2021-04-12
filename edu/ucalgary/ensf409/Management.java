@@ -294,7 +294,7 @@ public class Management {
                 break;
             }
 
-            if (index.get(k).get(0) == -1 || parts.isEmpty()) {
+            if (index.get(k).get(0) == -1 || (parts.isEmpty() && k != steps - 1)) {
                 overflow = true;
                 break;
             }

@@ -188,8 +188,6 @@ public class Inventory {
         sc.close();
         SQL.populateFurniture(furniture, type, ammount);
 
-        System.out.println(SQL.chain.getManuNames());
-
         SQL.orderForm = new OrderForm(furniture, ammount, SQL.chain.getIDVector(), SQL.chain.getPrice(),
                 SQL.chain.getManuNames(), type, SQL.chain.getOverflow());
 
