@@ -9,6 +9,9 @@ public class Lamp extends Furniture {
     private Furniture furniture;
 
     // Constructor
+    public Lamp() {
+    }
+    
     public Lamp(ResultSet results) {
         try {
             this.base = results.getString("Base");
