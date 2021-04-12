@@ -4,11 +4,22 @@ Faculty Name:
 Contact:
 Date:
 
-Original Request: desk, 2
+Original Request: adjustable desk, 4
 
 Items Ordered
 ID: D5437
 ID: D4475
 ID: D2746
 ID: D1030
-Total Price: $650
+ID: D7373
+ID: D3682
+Total Price: $1050
+
+Complete order could not be fulfilled based on current inventory.
+Try reducing the amount of furniture requested or visit anyone of these manufacturers:
+Office Furnishings
+Furniture Goods
+Fine Office Supplies
+Academic Desks
+
+Thank you, come again :)
