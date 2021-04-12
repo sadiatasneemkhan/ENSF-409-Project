@@ -4,8 +4,9 @@ Faculty Name:
 Contact:
 Date:
 
-Original Request: lamp, 1
+Original Request: desk, 1
 
 Items Ordered
-ID: L564
-Total Price: $20
+ID: D2341
+ID: D1927
+Total Price: $300

@@ -31,11 +31,12 @@ public class OrderForm {
             myWriter.write("Original Request: "+ this.furniture +", "+this.ammount+"\n\n");
             
             myWriter.write("Items Ordered\n");
+
             for (int i=0; i < this.ID.size(); i++){
                 myWriter.write("ID: "+this.ID.get(i)+"\n");
             }
 
-            myWriter.write("Total Price: $"+ this.price);
+            myWriter.write("\nTotal Price: $"+ this.price);
 
 			myWriter.close();
 

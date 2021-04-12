@@ -166,20 +166,20 @@ public class Inventory {
         System.out.println("What type of "+ furniture +" would you like?: ");
         String type = sc.nextLine();
         while (!validType){
-            if(furniture.equalsIgnoreCase("chair")&&type.equalsIgnoreCase("task")||type.equalsIgnoreCase("mesh")
-            ||type.equalsIgnoreCase("executive")||type.equalsIgnoreCase("Kneeling")||type.equalsIgnoreCase("ergonomic")){
+            if(furniture.equalsIgnoreCase("chair")&&(type.equalsIgnoreCase("task")||type.equalsIgnoreCase("mesh")
+            ||type.equalsIgnoreCase("executive")||type.equalsIgnoreCase("Kneeling")||type.equalsIgnoreCase("ergonomic"))){
                 validType = true;
             }
-            else if(furniture.equalsIgnoreCase("desk")&&type.equalsIgnoreCase("traditional")
-            ||type.equalsIgnoreCase("adjustable")||type.equalsIgnoreCase("standing")){
+            else if(furniture.equalsIgnoreCase("desk")&&(type.equalsIgnoreCase("traditional")
+            ||type.equalsIgnoreCase("adjustable")||type.equalsIgnoreCase("standing"))){
                 validType = true;
             }
-            else if(furniture.equalsIgnoreCase("lamp")&&type.equalsIgnoreCase("desk")||
-            type.equalsIgnoreCase("swing arm")||type.equalsIgnoreCase("study")){
+            else if(furniture.equalsIgnoreCase("lamp")&&(type.equalsIgnoreCase("desk")||
+            type.equalsIgnoreCase("swing arm")||type.equalsIgnoreCase("study"))){
                 validType = true;
             }
-            else if(furniture.equalsIgnoreCase("filing")&&type.equalsIgnoreCase("small")
-            ||type.equalsIgnoreCase("medium")||type.equalsIgnoreCase("large")){
+            else if(furniture.equalsIgnoreCase("filing")&&(type.equalsIgnoreCase("small")
+            ||type.equalsIgnoreCase("medium")||type.equalsIgnoreCase("large"))){
                 validType = true;
             }
             else{
