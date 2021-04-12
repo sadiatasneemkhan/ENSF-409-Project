@@ -4,6 +4,7 @@ Faculty Name:
 Contact:
 Date:
 
+<<<<<<< HEAD
 Original Request: adjustable desk, 4
 
 Items Ordered
@@ -23,3 +24,11 @@ Fine Office Supplies
 Academic Desks
 
 Thank you, come again :)
+=======
+Original Request: desk, 1
+
+Items Ordered
+ID: D2341
+ID: D1927
+Total Price: $300
+>>>>>>> 02086b1bdc581b3896901cf1e5fa553e8bb56126

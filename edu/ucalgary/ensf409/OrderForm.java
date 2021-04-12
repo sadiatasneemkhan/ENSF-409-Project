@@ -55,6 +55,7 @@ public class OrderForm {
                 }
             }
 
+<<<<<<< HEAD
             if (overflow) {
                 myWriter.write("Complete order could not be fulfilled based on current inventory.\n");
                 myWriter.write("Try reducing the amount of furniture requested or visit any of these manufacturers:\n");
@@ -62,6 +63,15 @@ public class OrderForm {
             }
 
             myWriter.write("\n\nThank you, come again :)");
+=======
+            myWriter.write("Items Ordered\n");
+
+            for (int i=0; i < this.ID.size(); i++){
+                myWriter.write("ID: "+this.ID.get(i)+"\n");
+            }
+
+            myWriter.write("\nTotal Price: $"+ this.price);
+>>>>>>> 02086b1bdc581b3896901cf1e5fa553e8bb56126
 
             myWriter.close();
 
