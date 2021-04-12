@@ -1,6 +1,9 @@
 import edu.ucalgary.ensf409.*;
+
+import java.io.IOException;
 import java.sql.*;
 import java.util.*;
+
 
 public class Inventory {
     public final String DBURL;
@@ -9,6 +12,7 @@ public class Inventory {
     private Connection dbConnect;
     private ResultSet results;
     private Management chain;
+    private OrderForm orderForm;
 
     public Inventory(String DBURL, String USERNAME, String PASSWORD) {
         this.DBURL = DBURL;
@@ -119,7 +123,9 @@ public class Inventory {
         }
     }
 
-    public static void welcome() {
+
+
+    public static void welcomeMessege() {
         System.out.println("Welcome!");
         System.out.println("This program will need a connection to the inventory database (jdbc:mysql://localhost:3306/inventory)");
         System.out.println("The purpose is to figure out the cheapest and most sustainable option when choosing a new furniture item.");
@@ -129,10 +135,12 @@ public class Inventory {
 
 
 
-    public static void main(String args[]) {
-        
-        welcome();
+    public static void main(String args[]) throws IOException {
+        boolean validfurniture = false, validType = false;
+
+        welcomeMessege();
         Scanner sc = new Scanner(System.in);
+
         System.out.println("Enter your username: ");
         String userName = sc.nextLine();
         System.out.println("Enter your password: ");
@@ -140,16 +148,55 @@ public class Inventory {
 
         Inventory SQL = new Inventory("jdbc:mysql://localhost:3306/INVENTORY", userName, password);
         SQL.initializeConnection();
-        sc.close();
 
         System.out.println("What kind of furniture do you want?: ");
         String furniture = sc.nextLine();
-        // inorder to avoid user input mistakes we need to make the user choose between all the valid types there are for each furniture type.
-        System.out.println("What type?: ");
+        while (!validfurniture){
+            if(furniture.equalsIgnoreCase("chair")||furniture.equalsIgnoreCase("desk")||furniture.equalsIgnoreCase("lamp")||furniture.equalsIgnoreCase("filing")){
+                validfurniture = true;
+            }
+            else{
+                System.out.println("Please enter a valid furniture item i.e. lamp, desk, filing or chair");
+                furniture = sc.nextLine();
+            }
+        }
+
+        System.out.println("What type of "+ furniture +" would you like?: ");
         String type = sc.nextLine();
-        System.out.println("How many? ");
+        while (!validType){
+            if(furniture.equalsIgnoreCase("chair")&&type.equalsIgnoreCase("task")||type.equalsIgnoreCase("mesh")
+            ||type.equalsIgnoreCase("executive")||type.equalsIgnoreCase("Kneeling")||type.equalsIgnoreCase("ergonomic")){
+                validType = true;
+            }
+            else if(furniture.equalsIgnoreCase("desk")&&type.equalsIgnoreCase("traditional")
+            ||type.equalsIgnoreCase("adjustable")||type.equalsIgnoreCase("standing")){
+                validType = true;
+            }
+            else if(furniture.equalsIgnoreCase("lamp")&&type.equalsIgnoreCase("desk")||
+            type.equalsIgnoreCase("swing arm")||type.equalsIgnoreCase("study")){
+                validType = true;
+            }
+            else if(furniture.equalsIgnoreCase("filing")&&type.equalsIgnoreCase("small")
+            ||type.equalsIgnoreCase("medium")||type.equalsIgnoreCase("large")){
+                validType = true;
+            }
+            else{
+                System.out.println("Please enter a valid type for the "+furniture);
+                type = sc.nextLine();
+            }
+        }
+
+        System.out.println("How many would you like? (Please enter a valid integer): ");
         int ammount = sc.nextInt();
 
+        sc.close();
         SQL.populateFurniture(furniture, type, ammount);
+        
+        System.out.println(SQL.chain.getManuNames());
+        
+        SQL.orderForm = new OrderForm(furniture, ammount, SQL.chain.getIDVector(), SQL.chain.getPrice().get(0));
+
+        SQL.orderForm.generateOrder();
+
     }
 }
