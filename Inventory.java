@@ -31,7 +31,9 @@ public class Inventory {
     public void initializeConnection() {
         try {
             dbConnect = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
+            System.out.println("Connection established successfully!");
         } catch (SQLException e) {
+            System.out.println("Connection unsucessful");
             e.printStackTrace();
         }
     }
@@ -119,31 +121,35 @@ public class Inventory {
 
     public static void welcome() {
         System.out.println("Welcome!");
-        System.out.println(
-                "This program will need a connection to the inventory deatabase in order to function properly");
-        System.out.println(
-                "The purpose is to figure ou the cheapest and most sustainable option when choosing a new furniture item.");
-        System.out.println(
-                "All you need to specify is what type of item you want([lamp, filing, desk or chair) and how many you want");
-        System.out.println(
-                "**********************************************************************************************************");
+        System.out.println("This program will need a connection to the inventory database (jdbc:mysql://localhost:3306/inventory)");
+        System.out.println("The purpose is to figure out the cheapest and most sustainable option when choosing a new furniture item.");
+        System.out.println("All you need to specify is what furniture of item (lamp, filing, desk or chair), the type and how many you want");
+        System.out.println("***************************************************************************************************************");
     }
 
-    public static void main(String[] args) {
 
+
+    public static void main(String args[]) {
+        
         welcome();
-        Scanner input = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         System.out.println("Enter your username: ");
-        String userName = input.nextLine();
-        System.out.println("Enter your username: ");
-        String password = input.nextLine();
-        input.close();
+        String userName = sc.nextLine();
+        System.out.println("Enter your password: ");
+        String password = sc.nextLine();
 
         Inventory SQL = new Inventory("jdbc:mysql://localhost:3306/INVENTORY", userName, password);
-
         SQL.initializeConnection();
+        sc.close();
 
-        SQL.populateFurniture("chair", "mesh", 5);
+        System.out.println("What kind of furniture do you want?: ");
+        String furniture = sc.nextLine();
+        // inorder to avoid user input mistakes we need to make the user choose between all the valid types there are for each furniture type.
+        System.out.println("What type?: ");
+        String type = sc.nextLine();
+        System.out.println("How many? ");
+        int ammount = sc.nextInt();
 
+        SQL.populateFurniture(furniture, type, ammount);
     }
 }
