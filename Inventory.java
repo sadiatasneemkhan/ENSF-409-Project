@@ -40,8 +40,9 @@ public class Inventory {
         try {
             Statement myStmt = dbConnect.createStatement();
             results = myStmt.executeQuery("SELECT * FROM " + category);
-
             chain = new Management(results, category, type);
+
+            setManufacturer();
 
             chain.printParts();
 
@@ -57,6 +58,22 @@ public class Inventory {
             }
 
             myStmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setManufacturer() {
+        try {
+            Statement myStmt = dbConnect.createStatement();
+            results = myStmt.executeQuery("SELECT * FROM manufacturer");
+
+            while (results.next()) {
+                chain.setManufacturer(results);
+            }
+
+            System.out.println(chain.getManufacturer().get(3).getName());
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -117,17 +134,19 @@ public class Inventory {
 
         welcome();
         Scanner input = new Scanner(System.in);
-        System.out.println("Enter your username: ");
-        String userName = input.nextLine();
-        System.out.println("Enter your username: ");
-        String password = input.nextLine();
+        // System.out.println("Enter your username: ");
+        // String userName = input.nextLine();
+        // System.out.println("Enter your username: ");
+        // String password = input.nextLine();
         input.close();
 
-        Inventory SQL = new Inventory("jdbc:mysql://localhost:3306/INVENTORY", userName, password);
+        // Inventory SQL = new Inventory("jdbc:mysql://localhost:3306/INVENTORY",
+        // userName, password);
+        Inventory SQL = new Inventory("jdbc:mysql://localhost:3306/INVENTORY", "root", "BwNlEp200.23");
 
         SQL.initializeConnection();
 
-        SQL.populateFurniture("LAMP", "Desk", 1);
+        SQL.populateFurniture("DESK", "Adjustable", 2);
 
     }
 }

@@ -8,6 +8,7 @@ public class Management {
     private Vector<Desk> desk = new Vector<Desk>();
     private Vector<Filing> filing = new Vector<Filing>();
     private Vector<Lamp> lamp = new Vector<Lamp>();
+    private Vector<Manufacturer> manufacturer = new Vector<Manufacturer>();
     private Vector<Vector<String>> parts = new Vector<Vector<String>>();
 
     private Vector<Vector<Integer>> index = new Vector<Vector<Integer>>();
@@ -24,7 +25,7 @@ public class Management {
     public Management(ResultSet results, String category, String type) {
         try {
             while (results.next()) {
-                if (results.getString("Type").equals(type)) {
+                if (results.getString("Type").equalsIgnoreCase(type)) {
                     this.parts.add(new Vector<String>());
 
                     if (category.equalsIgnoreCase("CHAIR")) {
@@ -52,7 +53,6 @@ public class Management {
                         parts.get(parts.size() - 1).add(results.getString("Base"));
                         parts.get(parts.size() - 1).add(results.getString("Bulb"));
                     }
-
                 }
             }
         } catch (SQLException e) {
@@ -75,6 +75,10 @@ public class Management {
 
     public Vector<Lamp> getLamp() {
         return this.lamp;
+    }
+
+    public Vector<Manufacturer> getManufacturer() {
+        return this.manufacturer;
     }
 
     public int getPriority() {
@@ -122,6 +126,10 @@ public class Management {
 
     public void setLamp(ResultSet results) {
         this.lamp.add(new Lamp(results));
+    }
+
+    public void setManufacturer(ResultSet results) {
+        this.manufacturer.add(new Manufacturer(results));
     }
 
     // Print
