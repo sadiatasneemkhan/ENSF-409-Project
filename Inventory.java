@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.*;
 
-
 public class Inventory {
     public final String DBURL;
     public final String USERNAME;
@@ -123,8 +122,6 @@ public class Inventory {
         }
     }
 
-
-
     public static void welcomeMessege() {
         System.out.println("Welcome!");
         System.out.println(
@@ -153,17 +150,17 @@ public class Inventory {
 
         System.out.println("What kind of furniture do you want?: ");
         String furniture = sc.nextLine();
-        while (!validfurniture){
-            if(furniture.equalsIgnoreCase("chair")||furniture.equalsIgnoreCase("desk")||furniture.equalsIgnoreCase("lamp")||furniture.equalsIgnoreCase("filing")){
+        while (!validfurniture) {
+            if (furniture.equalsIgnoreCase("chair") || furniture.equalsIgnoreCase("desk")
+                    || furniture.equalsIgnoreCase("lamp") || furniture.equalsIgnoreCase("filing")) {
                 validfurniture = true;
-            }
-            else{
+            } else {
                 System.out.println("Please enter a valid furniture item i.e. lamp, desk, filing or chair");
                 furniture = sc.nextLine();
             }
         }
 
-        System.out.println("What type of "+ furniture +" would you like?: ");
+        System.out.println("What type of " + furniture + " would you like?: ");
         String type = sc.nextLine();
         while (!validType){
             if(furniture.equalsIgnoreCase("chair")&&(type.equalsIgnoreCase("task")||type.equalsIgnoreCase("mesh")
@@ -181,9 +178,8 @@ public class Inventory {
             else if(furniture.equalsIgnoreCase("filing")&&(type.equalsIgnoreCase("small")
             ||type.equalsIgnoreCase("medium")||type.equalsIgnoreCase("large"))){
                 validType = true;
-            }
-            else{
-                System.out.println("Please enter a valid type for the "+furniture);
+            } else {
+                System.out.println("Please enter a valid type for the " + furniture);
                 type = sc.nextLine();
             }
         }
@@ -193,10 +189,10 @@ public class Inventory {
 
         sc.close();
         SQL.populateFurniture(furniture, type, ammount);
-        
+
         System.out.println(SQL.chain.getManuNames());
-        
-        SQL.orderForm = new OrderForm(furniture, ammount, SQL.chain.getIDVector(), SQL.chain.getPrice().get(0));
+
+        SQL.orderForm = new OrderForm(furniture, ammount, SQL.chain.getIDVector(), SQL.chain.getPrice());
 
         SQL.orderForm.generateOrder();
 
