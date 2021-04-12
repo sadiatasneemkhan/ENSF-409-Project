@@ -2,7 +2,7 @@ package edu.ucalgary.ensf409;
 
 import java.sql.*;
 
-public class Chair {
+public class Chair extends Furniture {
 
     private String legs;
     private String arms;
