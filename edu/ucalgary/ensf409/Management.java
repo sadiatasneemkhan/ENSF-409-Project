@@ -16,6 +16,8 @@ public class Management {
     private Vector<Integer> price = new Vector<Integer>();
     private Vector<String> ID = new Vector<String>();
 
+    private StringBuilder names = new StringBuilder();
+    private Boolean overflow = false;
     private int priority;
 
     // Constructor
@@ -111,6 +113,14 @@ public class Management {
         return this.ID;
     }
 
+    public String getManuNames() {
+        return this.names.toString();
+    }
+
+    public Boolean getOverflow() {
+        return this.overflow;
+    }
+
     // Setters
     public void setChair(ResultSet results) {
         this.chair.add(new Chair(results));
@@ -171,6 +181,8 @@ public class Management {
 
     // Combination algorithm
     public void combination(int steps) {
+        manufacturerNames();
+
         for (int k = 0; k < steps; k++) {
             index.add(new Vector<Integer>());
             index.get(k).add(-1);
@@ -281,6 +293,11 @@ public class Management {
                 }
                 break;
             }
+
+            if (index.get(k).get(0) == -1 || parts.isEmpty()) {
+                overflow = true;
+                break;
+            }
         }
     }
 
@@ -363,4 +380,42 @@ public class Management {
         }
         return -1;
     }
+
+    // Suggested Manufacturer
+    public void manufacturerNames() {
+        int l = parts.size();
+        for (int i = 0; i < l; i++) {
+            switch (priority) {
+            case 0:
+                names.append(findManufacturer(chair.get(i).getFurniture().getManuID()));
+                break;
+            case 1:
+                names.append(findManufacturer(desk.get(i).getFurniture().getManuID()));
+                break;
+            case 2:
+                names.append(findManufacturer(filing.get(i).getFurniture().getManuID()));
+                break;
+            case 3:
+                names.append(findManufacturer(lamp.get(i).getFurniture().getManuID()));
+                break;
+            }
+        }
+    }
+
+    public String findManufacturer(int manuID) {
+        int l = manufacturer.size();
+        for (int i = 0; i < l; i++) {
+            if (manufacturer.get(i).getManuID() == manuID) {
+                if (names.length() > 0) {
+                    names.append("\n");
+                }
+                String temp = manufacturer.get(i).getName();
+                manufacturer.removeElementAt(i);
+                return temp;
+            }
+        }
+
+        return "";
+    }
+
 }

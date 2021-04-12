@@ -51,6 +51,7 @@ public class Inventory {
             System.out.println(chain.getPrice());
             System.out.println(chain.getIndex());
             System.out.println(chain.getIDString());
+            System.out.println(chain.getManuNames());
 
             int l = chain.getIDVector().size();
             for (int i = 0; i < l; i++) {
@@ -66,7 +67,7 @@ public class Inventory {
     public void setManufacturer() {
         try {
             Statement myStmt = dbConnect.createStatement();
-            results = myStmt.executeQuery("SELECT * FROM manufacturer");
+            results = myStmt.executeQuery("SELECT * FROM MANUFACTURER");
 
             while (results.next()) {
                 chain.setManufacturer(results);
@@ -93,10 +94,8 @@ public class Inventory {
             case 2:
                 query = "DELETE FROM FILING WHERE ID = ?";
                 break;
-
             case 3:
                 query = "DELETE FROM LAMP WHERE ID = ?";
-
                 break;
             }
 
@@ -134,19 +133,17 @@ public class Inventory {
 
         welcome();
         Scanner input = new Scanner(System.in);
-        // System.out.println("Enter your username: ");
-        // String userName = input.nextLine();
-        // System.out.println("Enter your username: ");
-        // String password = input.nextLine();
+        System.out.println("Enter your username: ");
+        String userName = input.nextLine();
+        System.out.println("Enter your username: ");
+        String password = input.nextLine();
         input.close();
 
-        // Inventory SQL = new Inventory("jdbc:mysql://localhost:3306/INVENTORY",
-        // userName, password);
-        Inventory SQL = new Inventory("jdbc:mysql://localhost:3306/INVENTORY", "root", "BwNlEp200.23");
+        Inventory SQL = new Inventory("jdbc:mysql://localhost:3306/INVENTORY", userName, password);
 
         SQL.initializeConnection();
 
-        SQL.populateFurniture("DESK", "Adjustable", 2);
+        SQL.populateFurniture("chair", "mesh", 5);
 
     }
 }
