@@ -121,16 +121,18 @@ public class Inventory {
 
     public static void welcome() {
         System.out.println("Welcome!");
-        System.out.println("This program will need a connection to the inventory database (jdbc:mysql://localhost:3306/inventory)");
-        System.out.println("The purpose is to figure out the cheapest and most sustainable option when choosing a new furniture item.");
-        System.out.println("All you need to specify is what furniture of item (lamp, filing, desk or chair), the type and how many you want");
-        System.out.println("***************************************************************************************************************");
+        System.out.println(
+                "This program will need a connection to the inventory database (jdbc:mysql://localhost:3306/inventory)");
+        System.out.println(
+                "The purpose is to figure out the cheapest and most sustainable option when choosing a new furniture item.");
+        System.out.println(
+                "All you need to specify is what furniture of item (lamp, filing, desk or chair), the type and how many you want");
+        System.out.println(
+                "***************************************************************************************************************");
     }
 
+    public static void main(String[] args) {
 
-
-    public static void main(String args[]) {
-        
         welcome();
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter your username: ");
@@ -140,15 +142,17 @@ public class Inventory {
 
         Inventory SQL = new Inventory("jdbc:mysql://localhost:3306/INVENTORY", userName, password);
         SQL.initializeConnection();
-        sc.close();
 
         System.out.println("What kind of furniture do you want?: ");
         String furniture = sc.nextLine();
-        // inorder to avoid user input mistakes we need to make the user choose between all the valid types there are for each furniture type.
+        // inorder to avoid user input mistakes we need to make the user choose between
+        // all the valid types there are for each furniture type.
         System.out.println("What type?: ");
         String type = sc.nextLine();
         System.out.println("How many? ");
         int ammount = sc.nextInt();
+
+        sc.close();
 
         SQL.populateFurniture(furniture, type, ammount);
     }
