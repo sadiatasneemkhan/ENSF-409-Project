@@ -5,15 +5,22 @@ import java.util.Vector;
 
 public class OrderForm {
     private String furniture;
+    private String type;
+    private String manufacturer;
+    private Boolean overflow;
     private int ammount;
-    private Vector<String> ID;
     private int price = 0;
+    private Vector<String> ID;
 
+    // Constructor
     public OrderForm() {
     }
 
-    public OrderForm(String f, int a, Vector<String> ids, Vector<Integer> p) {
+    public OrderForm(String f, int a, Vector<String> ids, Vector<Integer> p, String m, String t, Boolean b) {
         this.furniture = f;
+        this.type = t;
+        this.manufacturer = m;
+        this.overflow = b;
         this.ammount = a;
         this.ID = ids;
 
@@ -23,6 +30,7 @@ public class OrderForm {
         }
     }
 
+    // Generate order form
     public void generateOrder() throws IOException {
         try {
             File myOutput = new File("order.txt");
@@ -33,15 +41,27 @@ public class OrderForm {
             myWriter.write("Contact:\n");
             myWriter.write("Date:\n\n");
 
-            myWriter.write("Original Request: " + this.furniture + ", " + this.ammount + "\n\n");
+            myWriter.write("Original Request: " + this.type + " " + this.furniture + ", " + this.ammount + "\n\n");
 
-            myWriter.write("Items Ordered\n");
+            if (!ID.isEmpty()) {
+                myWriter.write("Items Ordered\n");
+                for (int i = 0; i < this.ID.size(); i++) {
+                    myWriter.write("ID: " + this.ID.get(i) + "\n");
+                }
+                myWriter.write("Total Price: $" + this.price);
 
-            for (int i=0; i < this.ID.size(); i++){
-                myWriter.write("ID: "+this.ID.get(i)+"\n");
+                if (overflow) {
+                    myWriter.write("\n\n");
+                }
             }
 
-            myWriter.write("\nTotal Price: $"+ this.price);
+            if (overflow) {
+                myWriter.write("Complete order could not be fulfilled based on current inventory.\n");
+                myWriter.write("Try reducing the amount of furniture requested or visit any of these manufacturers:\n");
+                myWriter.write(manufacturer);
+            }
+
+            myWriter.write("\n\nThank you, come again :)");
 
             myWriter.close();
 
@@ -51,36 +71,61 @@ public class OrderForm {
         }
     }
 
+    // Getters
     public String getFurniture() {
         return this.furniture;
     }
 
-    public void setFurniture(String furniture) {
-        this.furniture = furniture;
+    public String getType() {
+        return this.type;
+    }
+
+    public String getManufacturer() {
+        return this.manufacturer;
+    }
+
+    public Boolean getOverflow() {
+        return this.overflow;
     }
 
     public int getAmmount() {
         return this.ammount;
     }
 
-    public void setAmmount(int ammount) {
-        this.ammount = ammount;
+    public int getPrice() {
+        return this.price;
     }
 
     public Vector<String> getID() {
         return this.ID;
     }
 
-    public void setID(Vector<String> ID) {
-        this.ID = ID;
+    // Setters
+    public void setFurniture(String furniture) {
+        this.furniture = furniture;
     }
 
-    public int getPrice() {
-        return this.price;
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    public void setOverflow(Boolean overflow) {
+        this.overflow = overflow;
+    }
+
+    public void setAmmount(int ammount) {
+        this.ammount = ammount;
     }
 
     public void setPrice(int price) {
         this.price = price;
     }
 
+    public void setID(Vector<String> ID) {
+        this.ID = ID;
+    }
 }
