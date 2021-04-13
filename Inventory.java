@@ -44,9 +44,9 @@ public class Inventory {
      * @description Uses the users username and password paired with the admin given
      *              DBURL to access the INVENTORY query
      * 
-     * @param DBURL
-     * @param USERNAME
-     * @param PASSWORD
+     * @param DBURL - database URL
+     * @param USERNAME - SQL username of the user engaging with the program
+     * @param PASSWORD - SQL password
      * 
      * @return
      */
@@ -63,7 +63,7 @@ public class Inventory {
      * 
      * @param
      * 
-     * @return DBURL
+     * @return database URL
      */
     public String getDBURL() {
         return DBURL;
@@ -76,7 +76,7 @@ public class Inventory {
      * 
      * @param
      * 
-     * @return USERNAME
+     * @return username
      */
     public String getUSERNAME() {
         return USERNAME;
@@ -123,9 +123,9 @@ public class Inventory {
      * 
      * @description Returns DBURL private String variable from class Inventory
      * 
-     * @param category
-     * @param type
-     * @param items
+     * @param furniture category
+     * @param furniture type
+     * @param number of requested items
      * 
      * @return
      */
