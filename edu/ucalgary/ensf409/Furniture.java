@@ -1,6 +1,12 @@
-/**
- * @author Etienne Lagace <a
+/** 
+ * @author Etienne Lagace <a>
  * href="mailto:etienne.lagace@ucalgary.ca">etienne.lagace@ucalgary.ca</a>
+ * @author Haniya Ahmed <a>
+ * href="mailto:haniya.ahmed@ucalgary.ca">haniya.ahmed@ucalgary.ca</a>
+ * @author Sadia Khan <a>
+ * href="mailto:sadia.khan1@ucalgary.ca">sadia.khan1@ucalgary.ca</a>
+ * @author Andres Caicedo <a>
+ * href="mailto:acaicedo@ucalgary.ca">acaicedo@ucalgary.ca.ca</a>
  * @version 1.2
  * @since 1.0
  */
@@ -32,7 +38,7 @@ public class Furniture {
      *              with neccessary Strings and Integers for the common columns of
      *              every furniture item
      * 
-     * @param results
+     * @param results from ResultSet object
      * 
      * @return
      */
@@ -68,7 +74,7 @@ public class Furniture {
      * 
      * @param
      * 
-     * @return type
+     * @return type of furniture 
      */
     public String getType() {
         return this.type;
@@ -94,7 +100,7 @@ public class Furniture {
      * 
      * @param
      * 
-     * @return manuID
+     * @return manufacturers ID (manuID)
      */
     public int getManuID() {
         return this.manuID;
@@ -145,7 +151,7 @@ public class Furniture {
      * 
      * @description Sets manuID private Int variable from class Furniture
      * 
-     * @param manuID
+     * @param manufacturer's ID (manuID)
      * 
      * @return
      */
