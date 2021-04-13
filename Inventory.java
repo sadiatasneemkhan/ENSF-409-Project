@@ -10,7 +10,7 @@ public class Inventory {
     public final String PASSWORD;
     private Connection dbConnect;
     private ResultSet results;
-    private Management chain;
+    protected Management chain;
     private OrderForm orderForm;
 
     public Inventory(String DBURL, String USERNAME, String PASSWORD) {
@@ -58,10 +58,10 @@ public class Inventory {
             System.out.println(chain.getIDString());
             System.out.println(chain.getManuNames());
 
-            int l = chain.getIDVector().size();
-            for (int i = 0; i < l; i++) {
-                deleteFurniture(chain.getIDVector().get(i));
-            }
+            // int l = chain.getIDVector().size();
+            // for (int i = 0; i < l; i++) {
+            //     deleteFurniture(chain.getIDVector().get(i));
+            // }
 
             myStmt.close();
         } catch (SQLException e) {
@@ -106,7 +106,7 @@ public class Inventory {
 
             PreparedStatement myStmt = dbConnect.prepareStatement(query);
             myStmt.setString(1, ID);
-
+            myStmt.executeUpdate();
             myStmt.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
