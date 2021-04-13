@@ -16,7 +16,8 @@ import java.sql.*;
 import java.util.*;
 
 /**
- * Management is a simple class that 
+ * Management is a simple class that stores all inventory items that match the category and type of requested furniture, and determines and stores the cheapest output
+ * to fulfill the order
  */
 
 public class Management {
