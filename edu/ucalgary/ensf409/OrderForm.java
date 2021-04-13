@@ -1,3 +1,10 @@
+/**
+ * @author Etienne Lagace <a
+ * href="mailto:etienne.lagace@ucalgary.ca">etienne.lagace@ucalgary.ca</a>
+ * @version 1.2
+ * @since 1.0
+ */
+
 package edu.ucalgary.ensf409;
 
 import java.io.*;
@@ -20,7 +27,17 @@ public class OrderForm {
     // Constructor
     public OrderForm() {
     }
-
+    
+    /**
+     * @summary Fills OrderForm class with results from user input
+     * 
+     * @description Uses stored user input values and SQL library 
+     * to initialize all the fields of the OrderForm class 
+     * 
+     * @param f, a, ids, p, m, t, b
+     * 
+     * @return
+     */
     public OrderForm(String f, int a, Vector<String> ids, Vector<Integer> p, String m, String t, Boolean b) {
         this.furniture = f;
         this.type = t;
