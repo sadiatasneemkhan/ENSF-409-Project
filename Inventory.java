@@ -1,9 +1,29 @@
+
+/**
+ * @author Etienne Lagace <a
+ * href="mailto:etienne.lagace@ucalgary.ca">etienne.lagace@ucalgary.ca</a>
+ * @version 1.8
+ * @since 1.0
+ */
+
 import edu.ucalgary.ensf409.*;
 
 import java.io.IOException;
 import java.sql.*;
 import java.util.*;
 
+/**
+ * Inventory is one of two main classes for this supply chain management
+ * project. It manages user inputs using the imported scanner class and library,
+ * uses said variables to populate a variable of class Management, and declares
+ * a method to find the cheapest combination of parts for any category and type
+ * of furniture.
+ * 
+ * This class utilizes an SQL library to access the users querys and pulls
+ * tables from the INVENTORY query. It uses a variable of class ResultSet to
+ * aquire and distribute the information found in the given tables and can
+ * delete any row from the given table using the ID.
+ */
 public class Inventory {
     public final String DBURL;
     public final String USERNAME;
@@ -13,24 +33,73 @@ public class Inventory {
     private Management chain;
     private OrderForm orderForm;
 
+    /**
+     * @summary Fills Inventory class to access SQL query
+     * 
+     * @description Uses the users username and password paired with the admin given
+     *              DBURL to access the INVENTORY query
+     * 
+     * @param DBURL
+     * @param USERNAME
+     * @param PASSWORD
+     * 
+     * @return
+     */
     public Inventory(String DBURL, String USERNAME, String PASSWORD) {
         this.DBURL = DBURL;
         this.USERNAME = USERNAME;
         this.PASSWORD = PASSWORD;
     }
 
+    /**
+     * @summary Returns DBURL variable
+     * 
+     * @description Returns DBURL private String variable from class Inventory
+     * 
+     * @param
+     * 
+     * @return DBURL
+     */
     public String getDBURL() {
         return DBURL;
     }
 
+    /**
+     * @summary Returns USERNAME variable
+     * 
+     * @description Returns USERNAME private String variable from class Inventory
+     * 
+     * @param
+     * 
+     * @return USERNAME
+     */
     public String getUSERNAME() {
         return USERNAME;
     }
 
+    /**
+     * @summary Returns PASSWORD variable
+     * 
+     * @description Returns PASSWORD private String variable from class Inventory
+     * 
+     * @param
+     * 
+     * @return PASSWORD
+     */
     public String getPASSWORD() {
         return PASSWORD;
     }
 
+    /**
+     * @summary Initializes the connection to a SQL query
+     * 
+     * @description Initializes the connection to the INVENTORY SQL query using the
+     *              users username and passowrd
+     * 
+     * @param
+     * 
+     * @return
+     */
     public void initializeConnection() {
         try {
             dbConnect = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
@@ -41,34 +110,63 @@ public class Inventory {
         }
     }
 
+    /**
+     * @summary Receives user input for furniture category, type, and the number of
+     *          items requested and uses given information to initialize a variable
+     *          of class Management, call a method to find the lowest combination of
+     *          parts, and call a method to delete the identified furniture items
+     * 
+     * @description Returns DBURL private String variable from class Inventory
+     * 
+     * @param category
+     * @param type
+     * @param items
+     * 
+     * @return
+     */
     public void populateFurniture(String category, String type, int items) {
         try {
             Statement myStmt = dbConnect.createStatement();
             results = myStmt.executeQuery("SELECT * FROM " + category);
+
+            // initializes and populates the variable chain with the found items
             chain = new Management(results, category, type);
 
+            // used to record the manufacturers to contact for the requested type or
+            // furniture
             setManufacturer();
 
-            chain.printParts();
-
+            // used to search through each item and find the best combination of parts for
+            // the lowest price
             chain.combination(items);
 
-            System.out.println(chain.getPrice());
-            System.out.println(chain.getIndex());
-            System.out.println(chain.getIDString());
-            System.out.println(chain.getManuNames());
-
+            // iterates through the found IDs to delete the items from INVENTORY
             int l = chain.getIDVector().size();
             for (int i = 0; i < l; i++) {
-                // deleteFurniture(chain.getIDVector().get(i));
+                deleteFurniture(chain.getIDVector().get(i));
             }
 
+            // closes myStmt variable
             myStmt.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * @summary Retrieves MANUFACTURER table from INVENTORY query populates chain
+     *          variable
+     * 
+     * @description Uses a variable of type ResultSet to obtain values found in the
+     *              MANUFACTURER table from the INVENTORY query and passes said
+     *              variable to a variable of class Management. These stored values
+     *              are later used to determine which manufacturers to contact if
+     *              the user request caused an overflow
+     * 
+     * @param
+     * 
+     * @return
+     */
     public void setManufacturer() {
         try {
             Statement myStmt = dbConnect.createStatement();
@@ -77,18 +175,26 @@ public class Inventory {
             while (results.next()) {
                 chain.setManufacturer(results);
             }
-
-            System.out.println(chain.getManufacturer().get(3).getName());
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * @summary Deletes rows from a table found in the INVENTORY query using IDs
+     * 
+     * @description Uses the found IDs of furniture item combinations to delete the
+     *              furniture item from the INVENTORY query
+     * 
+     * @param ID
+     * 
+     * @return
+     */
     public void deleteFurniture(String ID) {
         try {
             String query = new String();
 
+            // switch required to know which table needs to delete a row
             switch (chain.getPriority()) {
             case 0:
                 query = "DELETE FROM CHAIR WHERE ID = ?";
@@ -113,6 +219,15 @@ public class Inventory {
         }
     }
 
+    /**
+     * @summary Closes variables used to access SQL queries
+     * 
+     * @description Closes varibles retults and dbConnect
+     * 
+     * @param
+     * 
+     * @return
+     */
     public void close() {
         try {
             results.close();
@@ -122,6 +237,16 @@ public class Inventory {
         }
     }
 
+    /**
+     * @summary Prints message to user through terminal
+     * 
+     * @description Prints introductory message to user informing them the program
+     *              has been activated and what the purpose of the program is
+     * 
+     * @param
+     * 
+     * @return
+     */
     public static void welcomeMessege() {
         System.out.println("Welcome!");
         System.out.println(
@@ -134,9 +259,28 @@ public class Inventory {
                 "***************************************************************************************************************");
     }
 
-    public static void main(String args[]) throws IOException {
-        boolean validfurniture = false, validType = false;
+    /**
+     * @summary Retrieves user inputs and uses them to populate a variable of class
+     *          Inventory and call a function to initiaze a variable of class
+     *          OrderForm
+     * 
+     * @description Uses the imported scanner class and library to obtain user
+     *              inputs for username and password, as well as the furniture
+     *              category, type, and the number of items requested. Questions to
+     *              obtain user inputs will cycle until a correct input is detected.
+     *              Once a number of ID's for items and an optimal price have been
+     *              found or an overflow has occured, a variable of class OrderForm
+     *              will be initialized to create an order form for the user
+     * 
+     * @param args
+     * 
+     * @return
+     */
+    public static void main(String[] args) throws IOException {
+        boolean validfurniture = false;
+        boolean validType = false;
 
+        // prints welcome message to terminal
         welcomeMessege();
         Scanner sc = new Scanner(System.in);
 
@@ -145,11 +289,13 @@ public class Inventory {
         System.out.println("Enter your password: ");
         String password = sc.nextLine();
 
+        // accesses INVENTORY query
         Inventory SQL = new Inventory("jdbc:mysql://localhost:3306/INVENTORY", userName, password);
         SQL.initializeConnection();
 
         System.out.println("What kind of furniture do you want?: ");
         String furniture = sc.nextLine();
+        // cycles to ensure proper furniture category was supplied by the user
         while (!validfurniture) {
             if (furniture.equalsIgnoreCase("chair") || furniture.equalsIgnoreCase("desk")
                     || furniture.equalsIgnoreCase("lamp") || furniture.equalsIgnoreCase("filing")) {
@@ -162,6 +308,7 @@ public class Inventory {
 
         System.out.println("What type of " + furniture + " would you like?: ");
         String type = sc.nextLine();
+        // cycles to ensure proper furniture type was supplied by the user
         while (!validType) {
             if (furniture.equalsIgnoreCase("chair") && (type.equalsIgnoreCase("task") || type.equalsIgnoreCase("mesh")
                     || type.equalsIgnoreCase("executive") || type.equalsIgnoreCase("Kneeling")
@@ -186,11 +333,14 @@ public class Inventory {
         int amount = sc.nextInt();
 
         sc.close();
+        // begins populating process
         SQL.populateFurniture(furniture, type, amount);
 
+        // Initialize variable
         SQL.orderForm = new OrderForm(furniture, amount, SQL.chain.getIDVector(), SQL.chain.getPrice(),
                 SQL.chain.getManuNames(), type, SQL.chain.getOverflow());
 
+        // Creates order form for the user
         SQL.orderForm.generateOrder();
 
     }

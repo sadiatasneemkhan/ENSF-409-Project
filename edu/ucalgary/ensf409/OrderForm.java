@@ -1,6 +1,6 @@
 /**
- * @author Etienne Lagace <a
- * href="mailto:etienne.lagace@ucalgary.ca">etienne.lagace@ucalgary.ca</a>
+ * @author Andres Caicedo <a
+ * href="mailto:acaicedo@ucalgary.ca">acaicedo@ucalgary.ca</a>
  * @version 1.2
  * @since 1.0
  */
@@ -15,7 +15,6 @@ import java.util.Vector;
  * format. It contains private variables for all necessary information outputed
  * to the .txt file.
  */
-
 public class OrderForm {
     private String furniture;
     private String type;
