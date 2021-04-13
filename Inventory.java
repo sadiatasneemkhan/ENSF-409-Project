@@ -183,12 +183,12 @@ public class Inventory {
         }
 
         System.out.println("How many would you like? (Please enter a valid integer): ");
-        int ammount = sc.nextInt();
+        int amount = sc.nextInt();
 
         sc.close();
-        SQL.populateFurniture(furniture, type, ammount);
+        SQL.populateFurniture(furniture, type, amount);
 
-        SQL.orderForm = new OrderForm(furniture, ammount, SQL.chain.getIDVector(), SQL.chain.getPrice(),
+        SQL.orderForm = new OrderForm(furniture, amount, SQL.chain.getIDVector(), SQL.chain.getPrice(),
                 SQL.chain.getManuNames(), type, SQL.chain.getOverflow());
 
         SQL.orderForm.generateOrder();
