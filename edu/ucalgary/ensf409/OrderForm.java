@@ -71,9 +71,7 @@ public class OrderForm {
      * 
      * @description Produces a formatted order in a .txt format. If an order is not
      *              possible, it outputs the names of suggested manufacturers that
-     *              sell the requested furnitrue. of order are outputted if possible
-     *              and an "order could not be fulfilled" text is ouputted if
-     *              overflow was detected from the overflow boolean
+     *              sell the requested furniture. 
      * 
      * @param
      * 
@@ -112,9 +110,9 @@ public class OrderForm {
             // checks for overflow to know whether or not an "order could not be fulfilled"
             // message should be sent
             if (overflow) {
-                myWriter.write("Complete order could not be fulfilled based on current inventory.\n");
-                myWriter.write("Try reducing the amount of furniture requested or visit any of these manufacturers:\n");
-                myWriter.write(manufacturer);
+                System.out.println("Order could not be fulfilled based on current inventory.");
+                System.out.println("Suggested manufacturers are:");
+                System.out.println(manufacturer);
             }
 
             myWriter.write("\n\nThank you, come again :)");
