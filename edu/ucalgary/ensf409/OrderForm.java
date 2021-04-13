@@ -8,7 +8,7 @@ public class OrderForm {
     private String type;
     private String manufacturer;
     private Boolean overflow;
-    private int ammount;
+    private int amount;
     private int price = 0;
     private Vector<String> ID;
 
@@ -21,7 +21,7 @@ public class OrderForm {
         this.type = t;
         this.manufacturer = m;
         this.overflow = b;
-        this.ammount = a;
+        this.amount = a;
         this.ID = ids;
 
         int l = p.size();
@@ -41,7 +41,7 @@ public class OrderForm {
             myWriter.write("Contact:\n");
             myWriter.write("Date:\n\n");
 
-            myWriter.write("Original Request: " + this.type + " " + this.furniture + ", " + this.ammount + "\n\n");
+            myWriter.write("Original Request: " + this.type + " " + this.furniture + ", " + this.amount + "\n\n");
 
             if (!ID.isEmpty()) {
                 myWriter.write("Items Ordered\n");
@@ -53,6 +53,7 @@ public class OrderForm {
                 if (overflow) {
                     myWriter.write("\n\n");
                 }
+                
             }
 
             if (overflow) {
@@ -88,8 +89,8 @@ public class OrderForm {
         return this.overflow;
     }
 
-    public int getAmmount() {
-        return this.ammount;
+    public int getAmount() {
+        return this.amount;
     }
 
     public int getPrice() {
@@ -117,8 +118,8 @@ public class OrderForm {
         this.overflow = overflow;
     }
 
-    public void setAmmount(int ammount) {
-        this.ammount = ammount;
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 
     public void setPrice(int price) {
