@@ -254,7 +254,7 @@ public class Inventory {
         System.out.println(
                 "The purpose is to figure out the cheapest and most sustainable option when choosing a new furniture item.");
         System.out.println(
-                "All you need to specify is what furniture of item (lamp, filing, desk or chair), the type and how many you want");
+                "All you need to specify is what furniture of item (lamp, filing, desk or chair), the type, and how many you want.");
         System.out.println(
                 "***************************************************************************************************************");
     }
