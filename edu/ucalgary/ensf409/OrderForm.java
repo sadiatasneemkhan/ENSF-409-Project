@@ -3,6 +3,11 @@ package edu.ucalgary.ensf409;
 import java.io.*;
 import java.util.Vector;
 
+/**
+ * OrderForm is a simple class that produces the formatted order form in a .txt format. 
+ * It contains private variables for each part of the form and a Boolean variable.
+ */
+
 public class OrderForm {
     private String furniture;
     private String type;
