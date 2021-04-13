@@ -12,6 +12,7 @@ public class Management {
     private Vector<Vector<String>> parts = new Vector<Vector<String>>();
 
     private Vector<Vector<Integer>> index = new Vector<Vector<Integer>>();
+    private Vector<Integer> remember = new Vector<Integer>();
     private Vector<Boolean> usable = new Vector<Boolean>();
     private Vector<Integer> price = new Vector<Integer>();
     private Vector<String> ID = new Vector<String>();
@@ -185,8 +186,6 @@ public class Management {
 
         for (int k = 0; k < steps; k++) {
             index.add(new Vector<Integer>());
-            index.get(k).add(-1);
-            index.get(k).add(-1);
             price.add(10000);
 
             int l;
@@ -197,111 +196,95 @@ public class Management {
                 } else {
                     usable.set(i, false);
                 }
+                index.get(0).add(-1);
             }
 
             switch (priority) {
             case 0:
                 for (int i = 1; i <= l; i++) {
-                    recursive(chair.size(), l, i, 0, usable, k);
-
-                    if (index.get(k).size() > 2) {
-                        this.price.set(k, Price(index.get(k).get(2)));
-                        index.get(k).set(0, index.get(k).get(2));
-                        index.get(k).removeElementAt(1);
-                        index.get(k).removeElementAt(1);
-                    }
+                    recursive(chair.size(), l, i, 0, usable);
+                    findLowestPrice(k);
 
                     if (price.get(k) != 10000) {
                         break;
                     }
                 }
-                if (index.get(k).get(0) != -1) {
-                    for (int i = index.get(k).size() - 1; i >= 0; i--) {
-                        ID.add(chair.get(index.get(k).get(i)).getFurniture().getID());
-                        chair.removeElementAt(index.get(k).get(i));
-                        parts.removeElementAt(index.get(k).get(i));
+
+                for (int i = 0; i < l; i++) {
+                    if (index.get(0).get(i) != -1) {
+                        ID.add(chair.get(index.get(0).get(i)).getFurniture().getID());
+                        chair.removeElementAt(index.get(0).get(i));
+                        parts.removeElementAt(index.get(0).get(i));
                     }
                 }
+
                 break;
             case 1:
                 for (int i = 1; i <= l; i++) {
-                    recursive(desk.size(), l, i, 0, usable, k);
-
-                    if (index.get(k).size() > 2) {
-                        this.price.set(k, Price(index.get(k).get(2)));
-                        index.get(k).set(0, index.get(k).get(2));
-                        index.get(k).removeElementAt(1);
-                        index.get(k).removeElementAt(1);
-                    }
+                    recursive(desk.size(), l, i, 0, usable);
+                    findLowestPrice(k);
 
                     if (price.get(k) != 10000) {
                         break;
                     }
                 }
-                if (index.get(k).get(0) != -1) {
-                    for (int i = index.get(k).size() - 1; i >= 0; i--) {
-                        ID.add(desk.get(index.get(k).get(i)).getFurniture().getID());
-                        desk.removeElementAt(index.get(k).get(i));
-                        parts.removeElementAt(index.get(k).get(i));
+
+                for (int i = 0; i < l; i++) {
+                    if (index.get(0).get(i) != -1) {
+                        ID.add(desk.get(index.get(0).get(i)).getFurniture().getID());
+                        desk.removeElementAt(index.get(0).get(i));
+                        parts.removeElementAt(index.get(0).get(i));
                     }
                 }
                 break;
             case 2:
                 for (int i = 1; i <= l; i++) {
-                    recursive(filing.size(), l, i, 0, usable, k);
-
-                    if (index.get(k).size() > 2) {
-                        this.price.set(k, Price(index.get(k).get(2)));
-                        index.get(k).set(0, index.get(k).get(2));
-                        index.get(k).removeElementAt(1);
-                        index.get(k).removeElementAt(1);
-                    }
+                    recursive(filing.size(), l, i, 0, usable);
+                    findLowestPrice(k);
 
                     if (price.get(k) != 10000) {
                         break;
                     }
                 }
-                if (index.get(k).get(0) != -1) {
-                    for (int i = index.get(k).size() - 1; i >= 0; i--) {
-                        ID.add(filing.get(index.get(k).get(i)).getFurniture().getID());
-                        filing.removeElementAt(index.get(k).get(i));
-                        parts.removeElementAt(index.get(k).get(i));
+
+                for (int i = 0; i < l; i++) {
+                    if (index.get(0).get(i) != -1) {
+                        ID.add(filing.get(index.get(0).get(i)).getFurniture().getID());
+                        filing.removeElementAt(index.get(0).get(i));
+                        parts.removeElementAt(index.get(0).get(i));
                     }
                 }
                 break;
             case 3:
                 for (int i = 1; i <= l; i++) {
-                    recursive(lamp.size(), l, i, 0, usable, k);
-
-                    if (index.get(k).size() > 2) {
-                        this.price.set(k, Price(index.get(k).get(2)));
-                        index.get(k).set(0, index.get(k).get(2));
-                        index.get(k).removeElementAt(1);
-                        index.get(k).removeElementAt(1);
-                    }
+                    recursive(lamp.size(), l, i, 0, usable);
+                    findLowestPrice(k);
 
                     if (price.get(k) != 10000) {
                         break;
                     }
                 }
-                if (index.get(k).get(0) != -1) {
-                    for (int i = index.get(k).size() - 1; i >= 0; i--) {
-                        ID.add(lamp.get(index.get(k).get(i)).getFurniture().getID());
-                        lamp.removeElementAt(index.get(k).get(i));
-                        parts.removeElementAt(index.get(k).get(i));
+
+                for (int i = 0; i < l; i++) {
+                    if (index.get(0).get(i) != -1) {
+                        ID.add(lamp.get(index.get(0).get(i)).getFurniture().getID());
+                        lamp.removeElementAt(index.get(0).get(i));
+                        parts.removeElementAt(index.get(0).get(i));
                     }
                 }
                 break;
             }
 
-            if (index.get(k).get(0) == -1 || (parts.isEmpty() && k != steps - 1)) {
+            if (index.get(0).get(0) == -1 || (parts.isEmpty() && k != steps - 1)) {
                 overflow = true;
                 break;
             }
+
+            index.removeAllElements();
         }
     }
 
-    public void recursive(int length, int innerLength, int level, int position, Vector<Boolean> previous, int steps) {
+    public void recursive(int length, int innerLength, int level, int position, Vector<Boolean> previous) {
         previous = resetVector(previous);
 
         while (position < length) {
@@ -312,32 +295,21 @@ public class Management {
             }
 
             if (level != 1) {
-                recursive(length, innerLength, level - 1, position + 1, usable, steps);
-                if (index.get(steps).get(0) == -1 && index.get(steps).get(1) == -1 && index.get(steps).size() > 2) {
-                    price.set(steps, Price(position) + Price(index.get(steps).get(2)));
-
-                    index.get(steps).set(0, position);
-                    index.get(steps).set(1, index.get(steps).get(2));
-                }
-
-                for (int i = index.get(steps).size() - 1; i > 1; i--) {
-                    if (Price(position) + Price(index.get(steps).get(i)) < price.get(steps)) {
-                        price.set(steps, Price(position) + Price(index.get(steps).get(i)));
-
-                        index.get(steps).set(0, position);
-                        index.get(steps).set(1, index.get(steps).get(i));
-                    }
-                }
-
-                while (index.get(steps).size() != 2) {
-                    index.get(steps).removeElementAt(2);
-                }
+                remember.add(position);
+                recursive(length, innerLength, level - 1, position + 1, usable);
+                remember.removeElement(position);
             }
 
             for (int i = 0; i < innerLength; i++) {
                 if (usable.get(i)) {
                     if (i == innerLength - 1) {
-                        index.get(steps).add(position);
+                        index.add(new Vector<Integer>());
+                        index.get(index.size() - 1).add(position);
+
+                        for (int j = remember.size() - 1; j >= 0; j--) {
+                            index.get(index.size() - 1).add(remember.get(j));
+                        }
+
                         usable = resetVector(previous);
                     }
                 } else {
@@ -345,8 +317,31 @@ public class Management {
                     break;
                 }
             }
-
             position++;
+        }
+    }
+
+    public void findLowestPrice(int step) {
+        int l = index.size();
+        int n = 0;
+        int p = 0;
+
+        for (int i = 1; i < l; i++) {
+            n = index.get(i).size();
+
+            for (int j = 0; j < n; j++) {
+                p += obtainPrice(index.get(i).get(j));
+            }
+
+            if (p < price.get(step)) {
+                price.set(step, p);
+
+                for (int j = 0; j < n; j++) {
+                    index.get(0).set(j, index.get(i).get(j));
+                }
+            }
+
+            p = 0;
         }
     }
 
@@ -367,7 +362,7 @@ public class Management {
     }
 
     // Price
-    public int Price(int position) {
+    public int obtainPrice(int position) {
         switch (priority) {
         case 0:
             return chair.get(position).getFurniture().getPrice();

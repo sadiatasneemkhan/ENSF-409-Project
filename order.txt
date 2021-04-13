@@ -4,15 +4,18 @@ Faculty Name:
 Contact:
 Date:
 
-Original Request: adjustable desk, 3
+Original Request: study lamp, 4
 
 Items Ordered
-ID: D5437
-ID: D4475
-ID: D2746
-ID: D1030
-ID: D7373
-ID: D3682
-Total Price: $1050
+ID: L928
+ID: L982
+ID: L223
+Total Price: $10020
+
+Complete order could not be fulfilled based on current inventory.
+Try reducing the amount of furniture requested or visit any of these manufacturers:
+Fine Office Supplies
+Office Furnishings
+Furniture Goods
 
 Thank you, come again :)

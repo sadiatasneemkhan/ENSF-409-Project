@@ -60,7 +60,7 @@ public class Inventory {
 
             int l = chain.getIDVector().size();
             for (int i = 0; i < l; i++) {
-                deleteFurniture(chain.getIDVector().get(i));
+                // deleteFurniture(chain.getIDVector().get(i));
             }
 
             myStmt.close();
