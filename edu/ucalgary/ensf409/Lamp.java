@@ -14,7 +14,7 @@ import java.sql.*;
  * INVENTORY query. It contains a private String variables for each part and a
  * Funiture variable for all common columns of each furniture category
  */
-public class Lamp extends Furniture {
+public class Lamp {
 
     private String base;
     private String bulb;
