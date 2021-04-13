@@ -1,8 +1,13 @@
-
-/**
- * @author Etienne Lagace <a
+/** 
+ * @author Etienne Lagace <a>
  * href="mailto:etienne.lagace@ucalgary.ca">etienne.lagace@ucalgary.ca</a>
- * @version 1.8
+ * @author Haniya Ahmed <a>
+ * href="mailto:haniya.ahmed@ucalgary.ca">haniya.ahmed@ucalgary.ca</a>
+ * @author Sadia Khan <a>
+ * href="mailto:sadia.khan1@ucalgary.ca">sadia.khan1@ucalgary.ca</a>
+ * @author Andres Caicedo <a>
+ * href="mailto:acaicedo@ucalgary.ca">acaicedo@ucalgary.ca.ca</a>
+ * @version 1.2
  * @since 1.0
  */
 
