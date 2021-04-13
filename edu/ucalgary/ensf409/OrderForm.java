@@ -53,6 +53,16 @@ public class OrderForm {
     }
 
     // Generate order form
+     /**
+     * @summary Outputs the order into a .txt file
+     * 
+     * @description Produces a formatted order in a .txt format. If an order is not possible, 
+     * it outputs the names of suggested manufacturers that sell the requested furnitrue.
+     * 
+     * @param
+     * 
+     * @return 
+     */
     public void generateOrder() throws IOException {
         try {
             File myOutput = new File("order.txt");
@@ -95,59 +105,184 @@ public class OrderForm {
     }
 
     // Getters
+     /**
+     * @summary Returns furniture variable
+     * 
+     * @description Returns private String variable furniture from class OrderForm
+     * 
+     * @param
+     * 
+     * @return furniture
+     */
     public String getFurniture() {
         return this.furniture;
     }
-
+     /**
+     * @summary Returns type variable
+     * 
+     * @description Returns private String variable type from class OrderForm
+     * 
+     * @param
+     * 
+     * @return type
+     */
     public String getType() {
         return this.type;
     }
-
+    
+     /**
+     * @summary Returns manufacturer variable
+     * 
+     * @description Returns private String variable manufacturer from class OrderForm
+     * 
+     * @param
+     * 
+     * @return manufacturer
+     */
     public String getManufacturer() {
         return this.manufacturer;
     }
-
+    
+    /**
+     * @summary Returns overflow variable
+     * 
+     * @description Returns private Boolean variable overflow from class OrderForm
+     * 
+     * @param
+     * 
+     * @return overflow
+     */
     public Boolean getOverflow() {
         return this.overflow;
     }
-
+    
+    /**
+     * @summary Returns amount variable
+     * 
+     * @description Returns private int variable amount from class OrderForm
+     * 
+     * @param
+     * 
+     * @return amount
+     */
     public int getAmount() {
         return this.amount;
     }
-
+    
+    /**
+     * @summary Returns price variable
+     * 
+     * @description Returns private int variable price from class OrderForm
+     * 
+     * @param
+     * 
+     * @return price
+     */
     public int getPrice() {
         return this.price;
     }
-
+    
+    /**
+     * @summary Returns ID variable
+     * 
+     * @description Returns private int variable ID from class OrderForm
+     * 
+     * @param
+     * 
+     * @return ID
+     */
     public Vector<String> getID() {
         return this.ID;
     }
 
     // Setters
+    /**
+     * @summary Sets furniture variable
+     * 
+     * @description Sets private String variable furniture from class OrderForm
+     * 
+     * @param furniture
+     * 
+     * @return
+     */
     public void setFurniture(String furniture) {
         this.furniture = furniture;
     }
-
+    
+    /**
+     * @summary Sets type variable
+     * 
+     * @description Sets private String variable type from class OrderForm
+     * 
+     * @param type
+     * 
+     * @return
+     */
     public void setType(String type) {
         this.type = type;
     }
-
+    
+    /**
+     * @summary Sets manufacturer variable
+     * 
+     * @description Sets private String variable manufacturer from class OrderForm
+     * 
+     * @param manufacturer
+     * 
+     * @return
+     */
     public void setManufacturer(String manufacturer) {
         this.manufacturer = manufacturer;
     }
 
+    /**
+     * @summary Sets overflow variable
+     * 
+     * @description Sets private Boolean variable overflow from class OrderForm
+     * 
+     * @param overflow
+     * 
+     * @return
+     */
     public void setOverflow(Boolean overflow) {
         this.overflow = overflow;
     }
-
+    
+    /**
+     * @summary Sets amount variable
+     * 
+     * @description Sets private int variable amount from class OrderForm
+     * 
+     * @param amount
+     * 
+     * @return
+     */
     public void setAmount(int amount) {
         this.amount = amount;
     }
 
+     /**
+     * @summary Sets price variable
+     * 
+     * @description Sets private int variable price from class OrderForm
+     * 
+     * @param price
+     * 
+     * @return
+     */
     public void setPrice(int price) {
         this.price = price;
     }
-
+    
+     /**
+     * @summary Sets ID variable
+     * 
+     * @description Sets private Vector<String> variable ID from class OrderForm
+     * 
+     * @param ID
+     * 
+     * @return
+     */
     public void setID(Vector<String> ID) {
         this.ID = ID;
     }
