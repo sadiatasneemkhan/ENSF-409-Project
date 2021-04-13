@@ -1,8 +1,8 @@
 /**
  * @author Etienne Lagace <a
  * href="mailto:etienne.lagace@ucalgary.ca">etienne.lagace@ucalgary.ca</a>
- * @version 2.0
- * @since 0.1
+ * @version 1.2
+ * @since 1.0
  */
 
 package edu.ucalgary.ensf409;
