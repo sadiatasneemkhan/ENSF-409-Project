@@ -1,7 +1,7 @@
 /**
  * @author Etienne Lagace <a
  * href="mailto:etienne.lagace@ucalgary.ca">etienne.lagace@ucalgary.ca</a>
- * @version 1.2
+ * @version 1.4
  * @since 1.0
  */
 
