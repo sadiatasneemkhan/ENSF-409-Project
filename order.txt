@@ -1,10 +1,8 @@
-Furniture Order Form
-
 Faculty Name:
 Contact:
 Date:
 
-Original Request: adjustable desk, 3
+Original Request: medium filing, 3
 
 Items Ordered
 ID: C9890

@@ -1,6 +1,12 @@
-/**
- * @author Etienne Lagace <a
+/** 
+ * @author Etienne Lagace <a>
  * href="mailto:etienne.lagace@ucalgary.ca">etienne.lagace@ucalgary.ca</a>
+ * @author Haniya Ahmed <a>
+ * href="mailto:haniya.ahmed@ucalgary.ca">haniya.ahmed@ucalgary.ca</a>
+ * @author Sadia Khan <a>
+ * href="mailto:sadia.khan1@ucalgary.ca">sadia.khan1@ucalgary.ca</a>
+ * @author Andres Caicedo <a>
+ * href="mailto:acaicedo@ucalgary.ca">acaicedo@ucalgary.ca.ca</a>
  * @version 1.2
  * @since 1.0
  */
@@ -29,11 +35,11 @@ public class Chair {
     /**
      * @summary Fills Chair class with results from INVENTORY query
      * 
-     * @description Uses ResultSet variable from SQL library to fill Chair class
+     * @description Uses ResultSet object from SQL library to fill Chair class
      *              with neccessary Strings for parts and sends the rest of the
-     *              ResultSet variable to initialize a Funiture class item
+     *              ResultSet variable to initialize a Furniture class item
      * 
-     * @param results
+     * @param results belonging to the chair inventory in the SQL database
      * 
      * @return
      */
