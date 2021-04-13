@@ -16,8 +16,7 @@ import java.sql.*;
 import java.util.*;
 
 /**
- * Management is a simple class that stores all inventory items that match the category and type of requested furniture, and determines and stores the cheapest output
- * to fulfill the order
+ * Management is a simple class that 
  */
 
 public class Management {
@@ -326,30 +325,75 @@ public class Management {
     }
 
     // Print
-
+	/**
+     * @summary Prints the ID's of all the items in the Chair vector
+     * 
+     * @description Prints the ID's of all the items stored in the Chair vector
+     * 
+     * @param 
+     * 
+     * @return 
+     */	
     public void printChair() {
         for (int i = 0; i < chair.size(); i++) {
             System.out.println(chair.get(i).getFurniture().getID());
         }
     }
 
+	/**
+     * @summary Prints the ID's of all the items in the Desk vector
+     * 
+     * @description Prints the ID's of all the items stored in the Desk vector
+     * 
+     * @param 
+     * 
+     * @return 
+     */	
     public void printDesk() {
         for (int i = 0; i < desk.size(); i++) {
             System.out.println(desk.get(i).getFurniture().getID());
         }
     }
 
+	/**
+     * @summary Prints the ID's of all the items in the Filing vector
+     * 
+     * @description Prints the ID's of all the items stored in the Filing vector
+     * 
+     * @param 
+     * 
+     * @return 
+     */	
     public void printFiling() {
         for (int i = 0; i < filing.size(); i++) {
             System.out.println(filing.get(i).getFurniture().getID());
         }
     }
 
+	/**
+     * @summary Prints the ID's of all the items in the Lamp vector
+     * 
+     * @description Prints the ID's of all the items stored in the Lamp vector
+     * 
+     * @param 
+     * 
+     * @return 
+     */	
     public void printLamp() {
         for (int i = 0; i < lamp.size(); i++) {
             System.out.println(lamp.get(i).getFurniture().getID());
         }
     }
+	
+	/**
+     * @summary Prints the Y/N status of each inventory item component 
+     * 
+     * @description Prints out the Y/N values of each component of a furniture category
+     * 
+     * @param 
+     * 
+     * @return 
+     */	
 
     public void printParts() {
         int l = parts.size();
@@ -364,6 +408,15 @@ public class Management {
     }
 
     // Combination algorithm
+	/**
+     * @summary Executes a combination algorithm to determine possible combinations that could fulfill the order request
+     * 
+     * @description Prints the ID's of all the items stored in the Chair vector
+     * 
+     * @param 
+     * 
+     * @return 
+     */	
     public void combination(int steps) {
         manufacturerNames();
 
