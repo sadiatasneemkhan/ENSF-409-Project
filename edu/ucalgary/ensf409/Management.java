@@ -1,7 +1,23 @@
+/** 
+ * @author Etienne Lagace <a>
+ * href="mailto:etienne.lagace@ucalgary.ca">etienne.lagace@ucalgary.ca</a>
+ * @author Haniya Ahmed <a>
+ * href="mailto:haniya.ahmed@ucalgary.ca">haniya.ahmed@ucalgary.ca</a>
+ * @author Sadia Khan <a>
+ * href="mailto:sadia.khan1@ucalgary.ca">sadia.khan1@ucalgary.ca</a>
+ * @author Andres Caicedo <a>
+ * href="mailto:acaicedo@ucalgary.ca">acaicedo@ucalgary.ca.ca</a>
+ * @version 1.1
+ * @since 1.0
+ */
 package edu.ucalgary.ensf409;
 
 import java.sql.*;
 import java.util.*;
+
+/**
+ * Management is a simple class that 
+ */
 
 public class Management {
     private Vector<Chair> chair = new Vector<Chair>();
@@ -24,7 +40,21 @@ public class Management {
     // Constructor
     public Management() {
     }
-
+	
+    /**
+     * @summary Acquires all component columns of the requested furniture category
+     * 
+     * @description Uses results passed from the ResultSet object in the Inventory class
+	 * and each String vector row recieves an inventory item that match the requested
+	 * furniture type. Further, int priority is used in order to reduce the repetition of code
+	 * and easily determine the category of furniture requested
+     * 
+     * @param results - results of inventory items within the requested furniture category
+	 * @param category - name of the furniture category
+	 * @param type - name of the type of furniture requested
+     * 
+     * @return
+     */	
     public Management(ResultSet results, String category, String type) {
         try {
             while (results.next()) {
@@ -64,38 +94,113 @@ public class Management {
     }
 
     // Getters
+	    /**
+     * @summary Returns the Chair inventory 
+     * 
+     * @description Returns a vector of type Chair which holds all inventory matching the requested furniture type
+     * 
+     * @param 
+     * 
+     * @return Chair vector containing all chair inventory that matches the requested furniture type
+     */	
     public Vector<Chair> getChair() {
         return this.chair;
     }
 
+	    /**
+     * @summary Returns the Desk inventory 
+     * 
+     * @description Returns a vector of type Desk which holds all inventory matching the requested furniture type
+     * 
+     * @param 
+     * 
+     * @return Desk vector containing all desk inventory that matches the requested furniture type
+     */	
     public Vector<Desk> getDesk() {
         return this.desk;
     }
 
+	    /**
+     * @summary Returns the Filing inventory 
+     * 
+     * @description Returns a vector of type Filing which holds all inventory matching the requested furniture type
+     * 
+     * @param 
+     * 
+     * @return Filing vector containing all filing inventory that matches the requested furniture type
+     */	
     public Vector<Filing> getFiling() {
         return this.filing;
     }
+	
+    /**
+     * @summary Returns the Lamp inventory 
+     * 
+     * @description Returns a vector of type Lamp which holds all inventory matching the requested furniture type
+     * 
+     * @param 
+     * 
+     * @return Lamp vector containing lamp chair inventory that matches the requested furniture type
+     */	
 
     public Vector<Lamp> getLamp() {
         return this.lamp;
     }
 
+	 /**
+     * @summary Returns the Manufacturers list
+     * 
+     * @description Returns a list of manufacturers
+     * 
+     * @param 
+     * 
+     * @return Manufacturer vector containing a list of manufacturer names
+     */	
     public Vector<Manufacturer> getManufacturer() {
         return this.manufacturer;
     }
 
+	 /**
+     * @summary Returns int prioriy - an indicator of what furniture category was requested
+     * 
+     * @description Returns an int which represents what furniture category was requested
+     * 
+     * @param 
+     * 
+     * @return Int - furniture category
+     */	
     public int getPriority() {
         return this.priority;
     }
+	
 
+	 /**
+     * @summary Returns the Manufacturers list
+     * 
+     * @description Returns a list of manufacturers
+     * 
+     * @param 
+     * 
+     * @return Manufacturer vector containing a list of manufacturer names
+     */	
     public Vector<Integer> getPrice() {
         return this.price;
     }
 
-    public Vector<Vector<Integer>> getIndex() {
+
+    public Vector<Vector<Integer>> getIndex() {           //////////////////////////////////comment here
         return this.index;
     }
 
+	 /**
+     * @summary Returns the ID's of inventory item(s) in String format
+     * 
+     * @description Returns a String that contains all the ID's of ordered inventory items
+     * 
+     * @param 
+     * 
+     * @return ID's of inventory items.
+     */	
     public String getIDString() {
         StringBuilder temp = new StringBuilder();
 
@@ -110,40 +215,117 @@ public class Management {
         return temp.toString();
     }
 
+	 /**
+     * @summary Returns a vector of inventory item IDs
+     * 
+     * @description Returns a String vector containing the ID's of inventory items
+     * 
+     * @param 
+     * 
+     * @return String vector containing inventory item IDs
+     */	
     public Vector<String> getIDVector() {
         return this.ID;
     }
 
+	 /**
+     * @summary Returns the names of manufaturers in String format
+     * 
+     * @description Returns a list of manufacturers as a String
+     * 
+     * @param 
+     * 
+     * @return manufacturer names
+     */	
     public String getManuNames() {
         return this.names.toString();
     }
+	
+	 /**
+     * @summary Returns a boolean value representative of overflow
+     * 
+     * @description Returns a boolean value which is true if overflow is present, and false if there is no overflow
+     * 
+     * @param 
+     * 
+     * @return true if there is overflow, false if there is none
+     */	
 
     public Boolean getOverflow() {
         return this.overflow;
     }
 
     // Setters
+	
+	 /**
+     * @summary Adds a chair to the Chair vector
+     * 
+     * @description Adds a new chair from the ResultSet object to the Chair vector
+     * 
+     * @param ResultSet object from the desk inventory in the SQL database
+     * 
+     * @return 
+     */	
     public void setChair(ResultSet results) {
         this.chair.add(new Chair(results));
     }
 
+	 /**
+     * @summary Adds a desk to the Desk vector
+     * 
+     * @description Adds a new desk from the ResultSet object to the Desk vector
+     * 
+     * @param ResultSet object from the desk inventory in the SQL database
+     * 
+     * @return 
+     */	
+
     public void setDesk(ResultSet results) {
         this.desk.add(new Desk(results));
     }
+	
+	/**
+     * @summary Adds a fliing to the Filing vector
+     * 
+     * @description Adds a new filing from the ResultSet object to the Filing vector
+     * 
+     * @param ResultSet object from the filing inventory in the SQL database
+     * 
+     * @return 
+     */	
 
     public void setFiling(ResultSet results) {
         this.filing.add(new Filing(results));
     }
 
+	/**
+     * @summary Adds a lamp to the Lamp vector
+     * 
+     * @description Adds a new lamp from the ResultSet object to the Lamp vector
+     * 
+     * @param ResultSet object from the lamp inventory in the SQL database
+     * 
+     * @return 
+     */	
     public void setLamp(ResultSet results) {
         this.lamp.add(new Lamp(results));
     }
 
+	/**
+     * @summary Adds a manufacturer to the Manufacturer vector
+     * 
+     * @description Adds a new manufacturer from the ResultSet object to the Manufacturer vector
+     * 
+     * @param ResultSet object from the manufacturer table in the SQL database
+     * 
+     * @return 
+     */	
     public void setManufacturer(ResultSet results) {
         this.manufacturer.add(new Manufacturer(results));
     }
 
     // Print
+
     public void printChair() {
         for (int i = 0; i < chair.size(); i++) {
             System.out.println(chair.get(i).getFurniture().getID());
