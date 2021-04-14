@@ -16,7 +16,6 @@ import edu.ucalgary.ensf409.*;
 import java.io.IOException;
 import java.sql.*;
 import java.util.*;
-import java.*;
 
 /**
  * Inventory is one of two main classes for this supply chain management
@@ -406,7 +405,7 @@ public class Inventory {
         SQL.populateFurniture(furniture, type, amount);
 
         // Initialize variable
-        SQL.orderForm = new OrderForm(furniture, intAmount, SQL.chain.getIDVector(), SQL.chain.getPrice(),
+        SQL.orderForm = new OrderForm(furniture, amount, SQL.chain.getIDVector(), SQL.chain.getPrice(),
                 SQL.chain.getManuNames(), type, SQL.chain.getOverflow());
 
         // Creates order form for the user
