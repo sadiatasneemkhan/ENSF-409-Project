@@ -201,8 +201,16 @@ public class Management {
     public Vector<Integer> getPrice() {
         return this.price;
     }
-
-    public Vector<Vector<Integer>> getIndex() { ////////////////////////////////// comment here
+/**
+     * @summary Returns index
+     * 
+     * @description Returns a Vector of Vectors of type Integer 
+     * 
+     * @param
+     * 
+     * @return index
+     */
+    public Vector<Vector<Integer>> getIndex() { 
         return this.index;
     }
 

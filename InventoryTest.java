@@ -28,7 +28,9 @@ import java.util.Vector;
  *   Note: database username is "acaicedo" and password is "Am201849538", and the URL is "jdbc:mysql://localhost/inventory". These values must be changed to run the InventoryTest class with a different user 
  *   All Unit tests in this class have been designed to work with the provided database with updated prices. Correct input of the values will be required if the database is changed.
  
- *   Please also note that deletion tests will pass on the first run; however, if the inventory is not repopulated, they will fail on the second run since the items have already been deleted from the inventory. 
+ *   Please also note that all tests will pass except the testDeleteFromDatabase which is commented. It has been commeneted so that inventory is not deleted prematurely.
+ *   Once all the tests apart from it are run, testDeleteFromDatabase can be uncommented and run and will pass. If the inventory is not repopulated, some tests will fail on the second run 
+ *   since the items have already been deleted from the inventory. 
  *   As such, runnning the deletion test will result in the failure of the following tests upon the second run: testDeleteFromDatabase, testMaxTaskChairs, test1Chair
  */
 
