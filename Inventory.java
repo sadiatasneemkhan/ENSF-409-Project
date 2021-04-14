@@ -33,10 +33,18 @@ public class Inventory {
     public final String DBURL;
     public final String USERNAME;
     public final String PASSWORD;
-    protected Connection dbConnect;
+    private Connection dbConnect;
     private ResultSet results;
     protected Management chain;
     private OrderForm orderForm;
+    boolean validFurniture = false;
+    boolean validType = false;
+    boolean validInt = false;
+    private final static String REGEX = "\\d*";
+    private static final Patern PATTERN = Pattern.compile(REGEX);
+    public static String furniture;
+    public static String type;
+    public static int intAmount;
 
     /**
      * @summary Fills Inventory class to access SQL query
@@ -95,6 +103,32 @@ public class Inventory {
         return PASSWORD;
     }
 
+    public String getFurniture() {
+        return this.furniture;
+    }
+
+    public String getType() {
+        return this.type;
+    }
+
+    public int getAmount() {
+        return this.intAmount;
+    }
+
+//Setters
+
+    public void setFurniture(String furniture) {
+        this.furniture = furniture;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setAmount(int amount) {
+        this.intAmount = amount;
+    }
+
     /**
      * @summary Initializes the connection to a SQL query
      * 
@@ -150,6 +184,10 @@ public class Inventory {
             System.out.println(chain.getIDString());
             System.out.println(chain.getManuNames());
 
+            // int l = chain.getIDVector().size();
+            // for (int i = 0; i < l; i++) {
+            //     deleteFurniture(chain.getIDVector().get(i));
+            // }
 
             // closes myStmt variable
             myStmt.close();
@@ -264,6 +302,101 @@ public class Inventory {
                 "***************************************************************************************************************");
     }
 
+
+
+    public static void userPrompt() {
+        Scanner sc = new Scanner(System.in);
+        int intAmount;
+        System.out.println("Enter your username: ");
+        String userName = sc.nextLine();
+        System.out.println("Enter your password: ");
+        String password = sc.nextLine();
+
+        System.out.println("What kind of furniture do you want?: ");
+        String furniture = sc.nextLine();
+        checkValidFurniture(furniture);
+        if (!validFurniture)
+        {
+            while (!validFurniture) {
+                System.out.println("Please enter a valid furniture item i.e. lamp, desk, filing or chair");
+                furniture = sc.nextLine();
+                checkValidFurniture(furniture);
+            }
+        }
+        else if (validFurniture == true) {
+            setFurniture(furniture);
+        }
+
+        System.out.println("What type of " + furniture + " would you like?: ");
+        String type = sc.nextLine();
+        checkValidType (furniture, type);
+        if (!validType)
+        {
+            while (!validType)
+            {
+                System.out.println("Please enter a valid type for the " + furniture);
+                type = sc.nextLine();
+                checkValidType(furniture, type);
+            }
+        }
+        else if (validType == true) {
+            setType(type);
+        }
+
+        System.out.println("How many would you like? (Please enter a valid integer): ");
+        String amount = sc.nextInt();
+        checkValidQuantity(amount);
+        if (!validInt)
+        { while(!validInt) {
+            System.out.println("Please enter a valid integer");
+            amount = sc.nextLine();
+            checkValidQuantity(amount);
+        }
+        }
+        else if (validInt == true) {
+            intAmount = Integer.parseInt(amount);
+            setAmount(intAmount);
+        }
+
+        sc.close();
+    }
+
+    public void checkValidFurniture(String furniture) {
+        // cycles to ensure proper furniture category was supplied by the user
+
+        if (furniture.equalsIgnoreCase("chair") || furniture.equalsIgnoreCase("desk")
+                    || furniture.equalsIgnoreCase("lamp") || furniture.equalsIgnoreCase("filing")) {
+                validfurniture = true;
+                    }
+    }
+    
+
+    public void checkValidType(String furniture, String type) {
+        // cycles to ensure proper furniture type was supplied by the user
+            if (furniture.equalsIgnoreCase("chair") && (type.equalsIgnoreCase("task") || type.equalsIgnoreCase("mesh")
+                    || type.equalsIgnoreCase("executive") || type.equalsIgnoreCase("Kneeling")
+                    || type.equalsIgnoreCase("ergonomic"))) {
+                validType = true;
+            } else if (furniture.equalsIgnoreCase("desk") && (type.equalsIgnoreCase("traditional")
+                    || type.equalsIgnoreCase("adjustable") || type.equalsIgnoreCase("standing"))) {
+                validType = true;
+            } else if (furniture.equalsIgnoreCase("lamp") && (type.equalsIgnoreCase("desk")
+                    || type.equalsIgnoreCase("swing arm") || type.equalsIgnoreCase("study"))) {
+                validType = true;
+            } else if (furniture.equalsIgnoreCase("filing") && (type.equalsIgnoreCase("small")
+                    || type.equalsIgnoreCase("medium") || type.equalsIgnoreCase("large"))) {
+                validType = true;
+            }
+
+    }
+
+    public void checkValidQuantity(String amount) {
+        Matcher matcher = PATTERN.matcher(amount);
+        if (matcher.find()) {
+            validInt = true;
+        }
+    }
+
     /**
      * @summary Retrieves user inputs and uses them to populate a variable of class
      *          Inventory and call a function to initiaze a variable of class
@@ -282,70 +415,20 @@ public class Inventory {
      * @return
      */
     public static void main(String[] args) throws IOException {
-        boolean validfurniture = false;
-        boolean validType = false;
 
         // prints welcome message to terminal
         welcomeMessege();
-        Scanner sc = new Scanner(System.in);
-
-        System.out.println("Enter your username: ");
-        String userName = sc.nextLine();
-        System.out.println("Enter your password: ");
-        String password = sc.nextLine();
+        // ensure proper furniture category was supplied by the user
+        userPrompt();
 
         // accesses INVENTORY query
         Inventory SQL = new Inventory("jdbc:mysql://localhost:3306/INVENTORY", userName, password);
         SQL.initializeConnection();
 
-        System.out.println("What kind of furniture do you want?: ");
-        String furniture = sc.nextLine();
-        // cycles to ensure proper furniture category was supplied by the user
-        while (!validfurniture) {
-            if (furniture.equalsIgnoreCase("chair") || furniture.equalsIgnoreCase("desk")
-                    || furniture.equalsIgnoreCase("lamp") || furniture.equalsIgnoreCase("filing")) {
-                validfurniture = true;
-            } else {
-                System.out.println("Please enter a valid furniture item i.e. lamp, desk, filing or chair");
-                furniture = sc.nextLine();
-            }
-        }
-
-        System.out.println("What type of " + furniture + " would you like?: ");
-        String type = sc.nextLine();
-        // cycles to ensure proper furniture type was supplied by the user
-        while (!validType) {
-            if (furniture.equalsIgnoreCase("chair") && (type.equalsIgnoreCase("task") || type.equalsIgnoreCase("mesh")
-                    || type.equalsIgnoreCase("executive") || type.equalsIgnoreCase("Kneeling")
-                    || type.equalsIgnoreCase("ergonomic"))) {
-                validType = true;
-            } else if (furniture.equalsIgnoreCase("desk") && (type.equalsIgnoreCase("traditional")
-                    || type.equalsIgnoreCase("adjustable") || type.equalsIgnoreCase("standing"))) {
-                validType = true;
-            } else if (furniture.equalsIgnoreCase("lamp") && (type.equalsIgnoreCase("desk")
-                    || type.equalsIgnoreCase("swing arm") || type.equalsIgnoreCase("study"))) {
-                validType = true;
-            } else if (furniture.equalsIgnoreCase("filing") && (type.equalsIgnoreCase("small")
-                    || type.equalsIgnoreCase("medium") || type.equalsIgnoreCase("large"))) {
-                validType = true;
-            } else {
-                System.out.println("Please enter a valid type for the " + furniture);
-                type = sc.nextLine();
-            }
-        }
-
-        System.out.println("How many would you like? (Please enter a valid integer): ");
-        int amount = sc.nextInt();
-
-        sc.close();
+        
         // begins populating process
-        SQL.populateFurniture(furniture, type, amount);
+        SQL.populateFurniture(furniture, type, intAmount);
 
-        // int l = SQL.chain.getIDVector().size();
-        //     for (int i = 0; i < l; i++) {
-        //         SQL.deleteFurniture(SQL.chain.getIDVector().get(i));
-        //     }
-            
         // Initialize variable
         SQL.orderForm = new OrderForm(furniture, amount, SQL.chain.getIDVector(), SQL.chain.getPrice(),
                 SQL.chain.getManuNames(), type, SQL.chain.getOverflow());
