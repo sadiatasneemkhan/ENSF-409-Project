@@ -273,7 +273,15 @@ public class Inventory {
                 "***************************************************************************************************************");
     }
 
-
+/**
+     * @summary Ensures that the furniture category entered is valid
+     * 
+     * @description Returns the furniture category as a String if it is valid, otherwise prompts the user to reenter a value until a valid furntiture category is recieved
+     * 
+     * @param 
+     * 
+     * @return furniture
+     */
     public String checkValidFurniture() {
         // cycles to ensure proper furniture category was supplied by the user
         scan = new Scanner(System.in);
@@ -293,7 +301,15 @@ public class Inventory {
         return furniture;
     }
     
-
+	/**
+     * @summary Ensures that the furniture type entered is valid
+     * 
+     * @description Returns the furniture type as a String if it is valid, otherwise prompts the user to reenter a value until a valid type is recieved
+     * 
+     * @param furniture
+     * 
+     * @return type
+     */
     public String checkValidType(String furniture) {
         scan = new Scanner(System.in);
         System.out.println("What type of " + furniture + " would you like?: ");
