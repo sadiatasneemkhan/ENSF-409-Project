@@ -39,10 +39,6 @@ public class Inventory {
     private OrderForm orderForm;
     public Scanner scan;
 
-    // public static String furniture;
-    // public static String type;
-    // public static int intAmount;
-
     /**
      * @summary Fills Inventory class to access SQL query
      * 
