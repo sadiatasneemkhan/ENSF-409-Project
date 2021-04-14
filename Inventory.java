@@ -321,7 +321,15 @@ public class Inventory {
         }
         return type;
     }
-
+     /**
+     * @summary Ensures that the amount of items requested is a natural number
+     * 
+     * @description Prompts the user to re-enter a valid integer if it is not a natural number
+     * 
+     * @param num
+     * 
+     * @return boolean
+     */
     public static boolean isNaturalNum(String num){
 		/*
 		this checks if the string arg is a natural number
@@ -343,6 +351,15 @@ public class Inventory {
 		}
 	}
 
+     /**
+     * @summary Ensures that the amount of items requested is a valid integer
+     * 
+     * @description Prompts the user to re-enter a valid integer if the integer is invalid
+     * 
+     * @param
+     * 
+     * @return int
+     */
     public int checkValidNumber() {
         boolean validInt = false;
         scan = new Scanner(System.in);
