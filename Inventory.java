@@ -103,31 +103,6 @@ public class Inventory {
         return PASSWORD;
     }
 
-    public String getFurniture() {
-        return this.furniture;
-    }
-
-    public String getType() {
-        return this.type;
-    }
-
-    public int getAmount() {
-        return this.intAmount;
-    }
-
-//Setters
-
-    public void setFurniture(String furniture) {
-        this.furniture = furniture;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public void setAmount(int amount) {
-        this.intAmount = amount;
-    }
 
     /**
      * @summary Initializes the connection to a SQL query
