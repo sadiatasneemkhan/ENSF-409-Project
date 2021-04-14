@@ -298,9 +298,6 @@ public class Inventory {
                 checkValidFurniture(furniture);
             }
         }
-        else if (validFurniture == true) {
-            setFurniture(furniture);
-        }
 
         System.out.println("What type of " + furniture + " would you like?: ");
         String type = sc.nextLine();
@@ -314,9 +311,7 @@ public class Inventory {
                 checkValidType(furniture, type);
             }
         }
-        else if (validType == true) {
-            setType(type);
-        }
+
 
         System.out.println("How many would you like? (Please enter a valid integer): ");
         String amount = sc.nextInt();
@@ -330,7 +325,6 @@ public class Inventory {
         }
         else if (validInt == true) {
             intAmount = Integer.parseInt(amount);
-            setAmount(intAmount);
         }
 
         sc.close();
