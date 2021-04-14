@@ -268,24 +268,17 @@ public class Inventory {
                 "***************************************************************************************************************");
     }
 
-    <<<<<<<HEAD/**
-                * @summary Ensures that the furniture category entered is valid
-                * 
-                * @description Returns the furniture category as a String if it is valid,
-                *              otherwise prompts the user to reenter a value until a valid
-                *              furntiture category is recieved
-                * 
-                * @param
-                * 
-                * @return furniture
-                */
-    =======>>>>>>>1e242 ea...
-
-    removed uneccessary
-    print statements
-    and fixed
-    price on
-    order form
+        /**
+        * @summary Ensures that the furniture category entered is valid
+        * 
+        * @description Returns the furniture category as a String if it is valid,
+        *              otherwise prompts the user to reenter a value until a valid
+        *              furntiture category is recieved
+        * 
+        * @param
+        * 
+        * @return furniture
+        */
 
     public String checkValidFurniture() {
         // cycles to ensure proper furniture category was supplied by the user
