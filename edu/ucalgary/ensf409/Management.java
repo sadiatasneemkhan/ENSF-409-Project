@@ -583,6 +583,15 @@ public class Management {
     }
 
     // Reset
+	/**
+     * @summary Resets all vectors to original values 
+     * 
+     * @description Resets all usability values to their original values in the database, ensure that all vectors are linked by value rather than linked by reference
+     * 
+     * @param previous - altered vector
+     * 
+     * @return temp - reset vector
+     */
     public Vector<Boolean> resetVector(Vector<Boolean> previous) {
         Vector<Boolean> temp = new Vector<Boolean>();
         int l = previous.size();
@@ -599,6 +608,15 @@ public class Management {
     }
 
     // Price
+	/**
+     * @summary Retrieves the price of an inventory item
+     * 
+     * @description returns the price of a specified inventory item
+     * 
+     * @param position
+     * 
+     * @return price of inventory item
+     */
     public int obtainPrice(int position) {
         switch (priority) {
         case 0:
@@ -614,6 +632,15 @@ public class Management {
     }
 
     // Suggested Manufacturer
+	/**
+     * @summary Adds suggested manufacturer manuID to the names StringBuilder
+     * 
+     * @description Adds manuID of suggested manufacturers to the names StringBuilder
+     * 
+     * @param 
+     * 
+     * @return
+     */
     public void manufacturerNames() {
         int l = parts.size();
         for (int i = 0; i < l; i++) {
@@ -634,6 +661,15 @@ public class Management {
         }
     }
 
+	/**
+     * @summary Returns a list of suggested manufacturers
+     * 
+     * @description Takes in the manuID and returns the list of names of suggested manufacturers
+     * 
+     * @param manuID
+     * 
+     * @return the list of names of suggested manufacturers
+     */
     public String findManufacturer(int manuID) {
         int l = manufacturer.size();
         for (int i = 0; i < l; i++) {
