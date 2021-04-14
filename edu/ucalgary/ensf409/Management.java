@@ -16,7 +16,8 @@ import java.sql.*;
 import java.util.*;
 
 /**
- * Management is a simple class that 
+ * Management is a simple class that uses ResultSet objects passed from the Inventory class to initialized vectors of the furniture category requested. The class then proceeds
+ * to employ an algorithm to determine all possible combination to fulfill the order request, along with determining the cheapest output
  */
 
 public class Management {
