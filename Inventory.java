@@ -33,7 +33,7 @@ public class Inventory {
     public final String DBURL;
     public final String USERNAME;
     public final String PASSWORD;
-    private Connection dbConnect;
+    protected Connection dbConnect;
     private ResultSet results;
     protected Management chain;
     private OrderForm orderForm;
@@ -150,10 +150,6 @@ public class Inventory {
             System.out.println(chain.getIDString());
             System.out.println(chain.getManuNames());
 
-            // int l = chain.getIDVector().size();
-            // for (int i = 0; i < l; i++) {
-            //     deleteFurniture(chain.getIDVector().get(i));
-            // }
 
             // closes myStmt variable
             myStmt.close();
@@ -345,6 +341,11 @@ public class Inventory {
         // begins populating process
         SQL.populateFurniture(furniture, type, amount);
 
+        // int l = SQL.chain.getIDVector().size();
+        //     for (int i = 0; i < l; i++) {
+        //         SQL.deleteFurniture(SQL.chain.getIDVector().get(i));
+        //     }
+            
         // Initialize variable
         SQL.orderForm = new OrderForm(furniture, amount, SQL.chain.getIDVector(), SQL.chain.getPrice(),
                 SQL.chain.getManuNames(), type, SQL.chain.getOverflow());
