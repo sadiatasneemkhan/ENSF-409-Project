@@ -1,9 +1,37 @@
+/** 
+ * @author Etienne Lagace <a>
+ * href="mailto:etienne.lagace@ucalgary.ca">etienne.lagace@ucalgary.ca</a>
+ * @author Haniya Ahmed <a>
+ * href="mailto:haniya.ahmed@ucalgary.ca">haniya.ahmed@ucalgary.ca</a>
+ * @author Sadia Khan <a>
+ * href="mailto:sadia.khan1@ucalgary.ca">sadia.khan1@ucalgary.ca</a>
+ * @author Andres Caicedo <a>
+ * href="mailto:acaicedo@ucalgary.ca">acaicedo@ucalgary.ca.ca</a>
+ * @version 1.1
+ * @since 1.0
+ */
+
 import org.junit.*;
 import static org.junit.Assert.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Vector;
+
+/**
+ * InventoryTest is a simple test class that tests functions of the Inventory class and program to ensure that orders are being correctly fulfilled
+ * according to the available inventory. 
+ */
+ 
+ 
+ /** README
+ * 
+ *   Note: database username is "acaicedo" and password is "Am201849538", and the URL is "jdbc:mysql://localhost/inventory". These values must be changed to run the InventoryTest class with a different user 
+ *   All Unit tests in this class have been designed to work with the provided database with updated prices. Correct input of the values will be required if the database is changed.
+ 
+ *   Please also note that deletion tests will pass on the first run; however, if the inventory is not repopulated, they will fail on the second run since the items have already been deleted from the inventory. 
+ *   As such, runnning the deletion test will result in the failure of the following tests upon the second run: testDeleteFromDatabase, testMaxTaskChairs, test1Chair
+ */
 
 
 public class InventoryTest {
@@ -16,6 +44,9 @@ public class InventoryTest {
     }
 
     @Test
+	/*test1Chair: tests if 1 chair of each type can be ordered. The passing of this test also ensures that the inventory constructor is working
+efficiently and a connection with the database is effectively secured with the correct username and password. It ensures that the combination
+alogrithm is working efficiently when 1 item of type Chair is ordered to output the cheapest combination*/
     public void test1Chair(){
         Inventory testSQL = new Inventory("jdbc:mysql://localhost:3306/INVENTORY", USERNAME, PASSWORD);
         testSQL.initializeConnection();
@@ -42,6 +73,7 @@ public class InventoryTest {
     }
 
     @Test
+	//test1Desk: tests if 1 desk of each type can be ordered
     public void test1Desk(){ 
         Inventory testSQL = new Inventory("jdbc:mysql://localhost:3306/INVENTORY", USERNAME, PASSWORD);
         testSQL.initializeConnection();
@@ -63,6 +95,7 @@ public class InventoryTest {
     } 
     
     @Test
+	//test1Lamp: tests if 1 lamp of each type can be ordered
     public void test1Lamp(){
         Inventory testSQL = new Inventory("jdbc:mysql://localhost:3306/INVENTORY", USERNAME, PASSWORD);
         testSQL.initializeConnection();
@@ -86,6 +119,7 @@ public class InventoryTest {
     }
 
     @Test
+	//test1Filing: tests if 1 filing of each type can be ordered
     public void test1Filing(){
         Inventory testSQL = new Inventory("jdbc:mysql://localhost:3306/INVENTORY", USERNAME, PASSWORD);
         testSQL.initializeConnection();
@@ -107,6 +141,7 @@ public class InventoryTest {
     }
 
     @Test
+	//testMaxTaskChairs: tests if 1 Task Chair can be ordered
     public void testMaxTaskChairs(){
         Inventory testSQL = new Inventory("jdbc:mysql://localhost:3306/INVENTORY", USERNAME, PASSWORD);
         testSQL.initializeConnection();
@@ -121,6 +156,7 @@ public class InventoryTest {
     }
 
     @Test
+	//testMaxMeshChairs: tests if 1 Mesh Chair can be ordered
     public void testMaxMeshChairs(){
         Inventory testSQL = new Inventory("jdbc:mysql://localhost:3306/INVENTORY", USERNAME, PASSWORD);
         testSQL.initializeConnection();
@@ -135,6 +171,7 @@ public class InventoryTest {
     }
 
     @Test
+	//testMaxExecutiveChairs: tests if 1 Executive Chair can be ordered
     public void testMaxExecutiveChairs(){
         Inventory testSQL = new Inventory("jdbc:mysql://localhost:3306/INVENTORY", USERNAME, PASSWORD);
         testSQL.initializeConnection();
@@ -149,6 +186,7 @@ public class InventoryTest {
     }
 
     @Test
+	//testMaxErgonomicChairs: tests if 1 ergonomic chair can be ordered
     public void testMaxErgonomicChairs(){
         Inventory testSQL = new Inventory("jdbc:mysql://localhost:3306/INVENTORY", USERNAME, PASSWORD);
         testSQL.initializeConnection();
@@ -164,6 +202,7 @@ public class InventoryTest {
 
 
     @Test
+	//testMaxAdjustableDesks: tests if 3 adjustable desks can be ordered
     public void testMaxAdjustableDesks(){
         Inventory testSQL = new Inventory("jdbc:mysql://localhost:3306/INVENTORY", USERNAME, PASSWORD);
         testSQL.initializeConnection();
@@ -179,6 +218,7 @@ public class InventoryTest {
     }
 
     @Test
+	//testMaxStandingDesks: tests if 2 standing desks can be ordered
     public void testMaxStandingDesks(){
         Inventory testSQL = new Inventory("jdbc:mysql://localhost:3306/INVENTORY", USERNAME, PASSWORD);
         testSQL.initializeConnection();
@@ -193,6 +233,7 @@ public class InventoryTest {
     }
 
     @Test
+	//testMaxTraditionalDesks: tests if 2 Traditional desks can be ordered
     public void testMaxTraditionalDesks(){
         Inventory testSQL = new Inventory("jdbc:mysql://localhost:3306/INVENTORY", USERNAME, PASSWORD);
         testSQL.initializeConnection();
@@ -208,6 +249,7 @@ public class InventoryTest {
     }
 
     @Test
+	//testMaxSmallFilings: tests if 2 small filings can be ordered
     public void testMaxSmallFilings(){
         Inventory testSQL = new Inventory("jdbc:mysql://localhost:3306/INVENTORY", USERNAME, PASSWORD);
         testSQL.initializeConnection();
@@ -223,6 +265,7 @@ public class InventoryTest {
     }
 
     @Test
+	//testMaxMediumFilings: tests if 3 medium filings can be ordered
     public void testMaxMediumFilings(){
         Inventory testSQL = new Inventory("jdbc:mysql://localhost:3306/INVENTORY", USERNAME, PASSWORD);
         testSQL.initializeConnection();
@@ -239,6 +282,7 @@ public class InventoryTest {
     }
 
     @Test
+	//testMaxLargeFilings: tests if 2 large filings can be ordered
     public void testMaxLargeFilings(){
         Inventory testSQL = new Inventory("jdbc:mysql://localhost:3306/INVENTORY", USERNAME, PASSWORD);
         testSQL.initializeConnection();
@@ -254,6 +298,7 @@ public class InventoryTest {
     }
 
     @Test
+	//testMaxDeskLamp: tests if 3 lamp desks can be ordered
     public void testMaxDeskLamp(){
         Inventory testSQL = new Inventory("jdbc:mysql://localhost:3306/INVENTORY", USERNAME, PASSWORD);
         testSQL.initializeConnection();
@@ -270,6 +315,7 @@ public class InventoryTest {
     }
 
     @Test
+	//testMaxSwingArmLamp: tests if 2 swing arm lamps can be ordered
     public void testMaxSwingArmLamp(){
         Inventory testSQL = new Inventory("jdbc:mysql://localhost:3306/INVENTORY", USERNAME, PASSWORD);
         testSQL.initializeConnection();
@@ -285,6 +331,7 @@ public class InventoryTest {
     }
 
     @Test
+	//testMaxStudyLamp: tests if 2 study lamps can be ordered
     public void testMaxStudyLamp(){
         Inventory testSQL = new Inventory("jdbc:mysql://localhost:3306/INVENTORY", USERNAME, PASSWORD);
         testSQL.initializeConnection();
@@ -300,6 +347,8 @@ public class InventoryTest {
     }
 
     @Test
+	//testOverflowAll: tests all furniture categories and types to ensure that the program returns overflow when 
+	//there is insufficient inventory to fulfill an order
     public void testOverflowAll(){
         Inventory testSQL = new Inventory("jdbc:mysql://localhost:3306/INVENTORY", USERNAME, PASSWORD);
         testSQL.initializeConnection();
@@ -346,6 +395,7 @@ public class InventoryTest {
     }
 
     @Test
+	//testDeleteFromDatabase: tests the ordered items are deleted from the inventory database
     public void testDeleteFromDatabase(){
 
         Inventory testSQL = new Inventory("jdbc:mysql://localhost:3306/INVENTORY", USERNAME, PASSWORD);
