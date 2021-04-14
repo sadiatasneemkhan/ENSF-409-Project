@@ -31,15 +31,15 @@ import java.util.*;
  */
 public class Inventory {
     public final String DBURL;
-    public final String USERNAME;
-    public final String PASSWORD;
+    public static final String USERNAME;
+    public static final String PASSWORD;
     private Connection dbConnect;
     private ResultSet results;
     protected Management chain;
     private OrderForm orderForm;
-    boolean validFurniture = false;
-    boolean validType = false;
-    boolean validInt = false;
+    public static boolean validFurniture = false;
+    public static boolean validType = false;
+    public static boolean validInt = false;
     private final static String REGEX = "\\d*";
     private static final Patern PATTERN = Pattern.compile(REGEX);
     public static String furniture;
@@ -58,10 +58,8 @@ public class Inventory {
      * 
      * @return
      */
-    public Inventory(String DBURL, String USERNAME, String PASSWORD) {
+    public Inventory(String DBURL) {
         this.DBURL = DBURL;
-        this.USERNAME = USERNAME;
-        this.PASSWORD = PASSWORD;
     }
 
     /**
@@ -278,14 +276,15 @@ public class Inventory {
     }
 
 
+    
 
     public static void userPrompt() {
         Scanner sc = new Scanner(System.in);
         int intAmount;
         System.out.println("Enter your username: ");
-        String userName = sc.nextLine();
+        USERNAME = sc.nextLine();
         System.out.println("Enter your password: ");
-        String password = sc.nextLine();
+        PASSWORD = sc.nextLine();
 
         System.out.println("What kind of furniture do you want?: ");
         String furniture = sc.nextLine();
@@ -330,7 +329,7 @@ public class Inventory {
         sc.close();
     }
 
-    public void checkValidFurniture(String furniture) {
+    public static void checkValidFurniture(String furniture) {
         // cycles to ensure proper furniture category was supplied by the user
 
         if (furniture.equalsIgnoreCase("chair") || furniture.equalsIgnoreCase("desk")
@@ -340,7 +339,7 @@ public class Inventory {
     }
     
 
-    public void checkValidType(String furniture, String type) {
+    public static void checkValidType(String furniture, String type) {
         // cycles to ensure proper furniture type was supplied by the user
             if (furniture.equalsIgnoreCase("chair") && (type.equalsIgnoreCase("task") || type.equalsIgnoreCase("mesh")
                     || type.equalsIgnoreCase("executive") || type.equalsIgnoreCase("Kneeling")
@@ -359,7 +358,7 @@ public class Inventory {
 
     }
 
-    public void checkValidQuantity(String amount) {
+    public static void checkValidQuantity(String amount) {
         Matcher matcher = PATTERN.matcher(amount);
         if (matcher.find()) {
             validInt = true;
@@ -391,7 +390,7 @@ public class Inventory {
         userPrompt();
 
         // accesses INVENTORY query
-        Inventory SQL = new Inventory("jdbc:mysql://localhost:3306/INVENTORY", userName, password);
+        Inventory SQL = new Inventory("jdbc:mysql://localhost:3306/INVENTORY";
         SQL.initializeConnection();
 
         
