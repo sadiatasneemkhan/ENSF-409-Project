@@ -2,12 +2,16 @@ Faculty Name:
 Contact:
 Date:
 
-Original Request: study lamp, 2
+Original Request: mesh chair, 23423
 
 Items Ordered
-ID: L928
-ID: L982
-ID: L223
-Total Price: $20
+ID: C9890
+ID: C0942
+Total Price: $150
+
+Order could not be fulfilled based on current inventory.
+Suggested manufacturers are:
+Fine Office Supplies
+Chairs R Us
 
 Thank you, come again :)

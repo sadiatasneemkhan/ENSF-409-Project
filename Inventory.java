@@ -1,3 +1,4 @@
+
 /** 
  * @author Etienne Lagace <a>
  * href="mailto:etienne.lagace@ucalgary.ca">etienne.lagace@ucalgary.ca</a>
@@ -45,13 +46,13 @@ public class Inventory {
      * @description Uses the users username and password paired with the admin given
      *              DBURL to access the INVENTORY query
      * 
-     * @param DBURL - database URL
+     * @param DBURL    - database URL
      * @param USERNAME - SQL username of the user engaging with the program
      * @param PASSWORD - SQL password
      * 
      * @return
      */
-    public Inventory(String DBURL, String USERNAME, String PASSWORD ) {
+    public Inventory(String DBURL, String USERNAME, String PASSWORD) {
         this.DBURL = DBURL;
         this.USERNAME = USERNAME;
         this.PASSWORD = PASSWORD;
@@ -96,7 +97,6 @@ public class Inventory {
         return PASSWORD;
     }
 
-
     /**
      * @summary Initializes the connection to a SQL query
      * 
@@ -129,7 +129,7 @@ public class Inventory {
      * 
      * @param furniture category
      * @param furniture type
-     * @param number of requested items
+     * @param number    of requested items
      * 
      * @return
      */
@@ -149,14 +149,9 @@ public class Inventory {
             // the lowest price
             chain.combination(items);
 
-            System.out.println(chain.getPrice());
-            System.out.println(chain.getIndex());
-            System.out.println(chain.getIDString());
-            System.out.println(chain.getManuNames());
-
             // int l = chain.getIDVector().size();
             // for (int i = 0; i < l; i++) {
-            //     deleteFurniture(chain.getIDVector().get(i));
+            // deleteFurniture(chain.getIDVector().get(i));
             // }
 
             // closes myStmt variable
@@ -273,15 +268,25 @@ public class Inventory {
                 "***************************************************************************************************************");
     }
 
-/**
-     * @summary Ensures that the furniture category entered is valid
-     * 
-     * @description Returns the furniture category as a String if it is valid, otherwise prompts the user to reenter a value until a valid furntiture category is recieved
-     * 
-     * @param 
-     * 
-     * @return furniture
-     */
+    <<<<<<<HEAD/**
+                * @summary Ensures that the furniture category entered is valid
+                * 
+                * @description Returns the furniture category as a String if it is valid,
+                *              otherwise prompts the user to reenter a value until a valid
+                *              furntiture category is recieved
+                * 
+                * @param
+                * 
+                * @return furniture
+                */
+    =======>>>>>>>1e242 ea...
+
+    removed uneccessary
+    print statements
+    and fixed
+    price on
+    order form
+
     public String checkValidFurniture() {
         // cycles to ensure proper furniture category was supplied by the user
         scan = new Scanner(System.in);
@@ -290,21 +295,22 @@ public class Inventory {
         boolean validFurniture = false;
         while (!validFurniture) {
             if (furniture.equalsIgnoreCase("chair") || furniture.equalsIgnoreCase("desk")
-                || furniture.equalsIgnoreCase("lamp") || furniture.equalsIgnoreCase("filing")) {
+                    || furniture.equalsIgnoreCase("lamp") || furniture.equalsIgnoreCase("filing")) {
                 validFurniture = true;
-                }
-            else{
+            } else {
                 System.out.println("Please enter a valid furniture item i.e. lamp, desk, filing or chair");
                 furniture = scan.nextLine();
-                }
+            }
         }
         return furniture;
     }
-    
-	/**
+
+    /**
      * @summary Ensures that the furniture type entered is valid
      * 
-     * @description Returns the furniture type as a String if it is valid, otherwise prompts the user to reenter a value until a valid type is recieved
+     * @description Returns the furniture type as a String if it is valid, otherwise
+     *              prompts the user to reenter a value until a valid type is
+     *              recieved
      * 
      * @param furniture
      * 
@@ -313,7 +319,7 @@ public class Inventory {
     public String checkValidType(String furniture) {
         scan = new Scanner(System.in);
         System.out.println("What type of " + furniture + " would you like?: ");
-        String type = scan.nextLine();        
+        String type = scan.nextLine();
         boolean validType = false;
         // cycles to ensure proper furniture type was supplied by the user
         while (!validType) {
@@ -337,40 +343,43 @@ public class Inventory {
         }
         return type;
     }
-     /**
+
+    /**
      * @summary Ensures that the amount of items requested is a natural number
      * 
-     * @description Prompts the user to re-enter a valid integer if it is not a natural number
+     * @description Prompts the user to re-enter a valid integer if it is not a
+     *              natural number
      * 
      * @param num
      * 
      * @return boolean
      */
-    public static boolean isNaturalNum(String num){
-		/*
-		this checks if the string arg is a natural number
-		*/
-		//handles the empty push exception
-		if (num.length()== 0){
-			return false;
-		}
-		//handles the leading zeroe's exception 
-		else if (num.charAt(0) == '0' && num.length()>1){
-			return false;
-		}
-		//checks if the string can be parsed to an integer
-		try{
-			Integer.parseInt(num);
-			return  true;
-		} catch(NumberFormatException e){
-			return false;
-		}
-	}
+    public static boolean isNaturalNum(String num) {
+        /*
+         * this checks if the string arg is a natural number
+         */
+        // handles the empty push exception
+        if (num.length() == 0) {
+            return false;
+        }
+        // handles the leading zeroe's exception
+        else if (num.charAt(0) == '0' && num.length() > 1) {
+            return false;
+        }
+        // checks if the string can be parsed to an integer
+        try {
+            Integer.parseInt(num);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
 
-     /**
+    /**
      * @summary Ensures that the amount of items requested is a valid integer
      * 
-     * @description Prompts the user to re-enter a valid integer if the integer is invalid
+     * @description Prompts the user to re-enter a valid integer if the integer is
+     *              invalid
      * 
      * @param
      * 
@@ -381,11 +390,10 @@ public class Inventory {
         scan = new Scanner(System.in);
         System.out.println("How many would you like?: ");
         String val = scan.nextLine();
-        while(!validInt){
-            if(isNaturalNum(val)){
+        while (!validInt) {
+            if (isNaturalNum(val)) {
                 validInt = true;
-            }
-            else{
+            } else {
                 System.out.println("Please enter a valid integer: ");
                 val = scan.nextLine();
             }
@@ -425,11 +433,11 @@ public class Inventory {
         // accesses INVENTORY query
         Inventory SQL = new Inventory("jdbc:mysql://localhost:3306/INVENTORY", userName, password);
         SQL.initializeConnection();
-        
+
         String furniture = SQL.checkValidFurniture();
         String type = SQL.checkValidType(furniture);
         int amount = SQL.checkValidNumber();
-        
+
         // begins populating process
         SQL.populateFurniture(furniture, type, amount);
 

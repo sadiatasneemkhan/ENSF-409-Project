@@ -61,7 +61,9 @@ public class OrderForm {
 
         int l = price.size();
         for (int i = 0; i < l; i++) {
-            this.price += price.get(i);
+            if (price.get(i) != 10000) {
+                this.price += price.get(i);
+            }
         }
     }
 
@@ -71,7 +73,7 @@ public class OrderForm {
      * 
      * @description Produces a formatted order in a .txt format. If an order is not
      *              possible, it outputs the names of suggested manufacturers that
-     *              sell the requested furniture. 
+     *              sell the requested furniture.
      * 
      * @param
      * 
@@ -110,6 +112,10 @@ public class OrderForm {
             // checks for overflow to know whether or not an "order could not be fulfilled"
             // message should be sent
             if (overflow) {
+                myWriter.write("Order could not be fulfilled based on current inventory.\n");
+                myWriter.write("Suggested manufacturers are:\n");
+                myWriter.write(manufacturer);
+
                 System.out.println("Order could not be fulfilled based on current inventory.");
                 System.out.println("Suggested manufacturers are:");
                 System.out.println(manufacturer);
