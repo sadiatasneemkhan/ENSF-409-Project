@@ -2,10 +2,12 @@ Faculty Name:
 Contact:
 Date:
 
-Original Request: desk lamp, 1
+Original Request: study lamp, 2
 
 Items Ordered
-ID: L564
+ID: L928
+ID: L982
+ID: L223
 Total Price: $20
 
 Thank you, come again :)
