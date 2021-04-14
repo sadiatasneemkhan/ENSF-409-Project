@@ -13,9 +13,6 @@
 
 import org.junit.*;
 import static org.junit.Assert.*;
-import edu.ucalgary.ensf409.*;
-import java.sql.PreparedStatement;
-import java.sql.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Vector;
@@ -70,7 +67,6 @@ alogrithm is working efficiently when 1 item of type Chair is ordered to output 
         for (int i = 0; i < a.size(); i++){
             actual[i] = a.get(i);
         }
-
         assertTrue("Getting 1 chair of any type is not working properly", Arrays.equals(expected,actual));        
     }
 
@@ -115,9 +111,7 @@ alogrithm is working efficiently when 1 item of type Chair is ordered to output 
         for (int i = 0; i < a.size(); i++){
             actual[i] = a.get(i);
         }
-
         assertTrue("Getting 1 chair of any type is not working properly", Arrays.equals(expected,actual)); 
-        
     }
 
     @Test
@@ -396,25 +390,20 @@ alogrithm is working efficiently when 1 item of type Chair is ordered to output 
         assertTrue("Testing overflow does not yeild expected result", expected.equals(actual)); 
     }
 
-    @Test
-	//testDeleteFromDatabase: tests the ordered items are deleted from the inventory database
-    public void testDeleteFromDatabase(){
+    // @Test
+    // public void testDeleteFromDatabase(){
 
-        Inventory testSQL = new Inventory("jdbc:mysql://localhost:3306/INVENTORY", USERNAME, PASSWORD);
-        testSQL.initializeConnection();
+    //     Inventory testSQL = new Inventory("jdbc:mysql://localhost:3306/INVENTORY", USERNAME, PASSWORD);
+    //     testSQL.initializeConnection();
+    //     testSQL.populateFurniture("chair", "Task", 1);
+    //     int before = testSQL.chain.getIDVector().size();
 
-        testSQL.populateFurniture("chair", "Task", 1);
-        int before = testSQL.chain.getIDVector().size();
-
-        for (int i = 0; i < testSQL.chain.getIDVector().size(); i++){
-            testSQL.deleteFurniture(testSQL.chain.getIDVector().get(i));
-        }
-
-        testSQL.populateFurniture("chair", "Task", 1);
-        int after = testSQL.chain.getIDVector().size();
-
-        assertFalse("Delete function not working properly", before == after);
-    }
-    
+    //     for (int i = 0; i < testSQL.chain.getIDVector().size(); i++){
+    //         testSQL.deleteFurniture(testSQL.chain.getIDVector().get(i));
+    //     }
+    //     testSQL.populateFurniture("chair", "Task", 1);
+    //     int after = testSQL.chain.getIDVector().size();
+    //     assertFalse("Delete function not working properly", before == after);
+    // }
 
 }
