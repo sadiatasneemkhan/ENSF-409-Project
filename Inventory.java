@@ -16,6 +16,7 @@ import edu.ucalgary.ensf409.*;
 import java.io.IOException;
 import java.sql.*;
 import java.util.*;
+import java.*;
 
 /**
  * Inventory is one of two main classes for this supply chain management
@@ -41,7 +42,7 @@ public class Inventory {
     public static boolean validType = false;
     public static boolean validInt = false;
     private final static String REGEX = "\\d*";
-    private static final Patern PATTERN = Pattern.compile(REGEX);
+    private static final Pattern PATTERN = Pattern.compile(REGEX);
     public static String furniture;
     public static String type;
     public static int intAmount;
@@ -313,7 +314,7 @@ public class Inventory {
 
 
         System.out.println("How many would you like? (Please enter a valid integer): ");
-        String amount = sc.nextInt();
+        String amount = sc.nextLine();
         checkValidQuantity(amount);
         if (!validInt)
         { while(!validInt) {
@@ -334,7 +335,7 @@ public class Inventory {
 
         if (furniture.equalsIgnoreCase("chair") || furniture.equalsIgnoreCase("desk")
                     || furniture.equalsIgnoreCase("lamp") || furniture.equalsIgnoreCase("filing")) {
-                validfurniture = true;
+                validFurniture = true;
                     }
     }
     
@@ -390,7 +391,7 @@ public class Inventory {
         userPrompt();
 
         // accesses INVENTORY query
-        Inventory SQL = new Inventory("jdbc:mysql://localhost:3306/INVENTORY";
+        Inventory SQL = new Inventory("jdbc:mysql://localhost:3306/INVENTORY");
         SQL.initializeConnection();
 
         
@@ -398,7 +399,7 @@ public class Inventory {
         SQL.populateFurniture(furniture, type, intAmount);
 
         // Initialize variable
-        SQL.orderForm = new OrderForm(furniture, amount, SQL.chain.getIDVector(), SQL.chain.getPrice(),
+        SQL.orderForm = new OrderForm(furniture, intAmount, SQL.chain.getIDVector(), SQL.chain.getPrice(),
                 SQL.chain.getManuNames(), type, SQL.chain.getOverflow());
 
         // Creates order form for the user
