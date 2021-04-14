@@ -13,6 +13,8 @@
 
 import org.junit.*;
 import static org.junit.Assert.*;
+import edu.ucalgary.ensf409.*;
+import java.sql.PreparedStatement;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Arrays;
