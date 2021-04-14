@@ -2,12 +2,12 @@ Faculty Name:
 Contact:
 Date:
 
-Original Request: mesh chair, 23423
+Original Request: mesh chair, 3
 
 Items Ordered
 ID: C9890
 ID: C0942
-Total Price: $150
+Total Price: $225
 
 Order could not be fulfilled based on current inventory.
 Suggested manufacturers are:
