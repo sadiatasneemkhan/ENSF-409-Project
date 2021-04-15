@@ -149,11 +149,6 @@ public class Inventory {
             // the lowest price
             chain.combination(items);
 
-            // int l = chain.getIDVector().size();
-            // for (int i = 0; i < l; i++) {
-            // deleteFurniture(chain.getIDVector().get(i));
-            // }
-
             // closes myStmt variable
             myStmt.close();
         } catch (SQLException e) {
@@ -437,6 +432,11 @@ public class Inventory {
         // Initialize variable
         SQL.orderForm = new OrderForm(furniture, amount, SQL.chain.getIDVector(), SQL.chain.getPrice(),
                 SQL.chain.getManuNames(), type, SQL.chain.getOverflow());
+
+        int l = SQL.chain.getIDVector().size();
+        for (int i = 0; i < l; i++) {
+            SQL.deleteFurniture(SQL.chain.getIDVector().get(i));
+        }
 
         // Creates order form for the user
         SQL.orderForm.generateOrder();
